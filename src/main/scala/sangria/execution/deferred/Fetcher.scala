@@ -33,6 +33,12 @@ class Fetcher[Ctx, Res, RelRes, Id](
   def clearCachedRelId[RelId](deferredResolverState: Any, rel: Relation[Res, _, RelId], relId: RelId) =
     findCache(deferredResolverState)(_.clearRelId(rel, relId))
 
+  def updateCache(deferredResolverState: Any, id: Id, value: Res) =
+    findCache(deferredResolverState)(_.update(id, value))
+
+  def updateCacheRel[RelId](deferredResolverState: Any, rel: Relation[Res, _, RelId], relId: RelId, values: Seq[Res]) =
+    findCache(deferredResolverState)(_.updateRel(rel, relId, idFn, values))
+
   private def findCache(deferredResolverState: Any)(op: FetcherCache ⇒ Unit): Unit =
     deferredResolverState match {
       case map: Map[AnyRef, FetcherCache] @unchecked ⇒ map.get(this) match {

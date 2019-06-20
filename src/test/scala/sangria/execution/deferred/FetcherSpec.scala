@@ -131,6 +131,14 @@ class FetcherSpec extends WordSpec with Matchers with FutureResultSupport {
         Field("categoryEager", OptionType(CategoryType),
           arguments = Argument("id", StringType) :: Nil,
           resolve = c ⇒ c.ctx.getCategory(c.arg[String]("id"))),
+        Field("categoryAndCacheEmptyProducts", CategoryType,
+          arguments = Argument("id", StringType) :: Nil,
+          resolve = c ⇒ DeferredValue(fetcherCat.defer(c.arg[String]("id"))) map {
+            cat => {
+              fetcherProd.updateCacheRel(c.deferredResolverState, prodCat, cat.id, Seq())
+              cat
+            }
+          }),
         Field("categoryNonOpt", CategoryType,
           arguments = Argument("id", StringType) :: Nil,
           resolve = c ⇒ fetcherCat.defer(c.arg[String]("id"))),
@@ -414,7 +422,7 @@ class FetcherSpec extends WordSpec with Matchers with FutureResultSupport {
       resRelsOnly should be (resRelsOnlyCached)
     }
 
-    "hansle complex relations" in {
+    "handle complex relations" in {
       val query =
         graphql"""
           {
@@ -938,6 +946,26 @@ class FetcherSpec extends WordSpec with Matchers with FutureResultSupport {
         userContext = new Repo)
 
       fetchedProdIds.map(_.sorted) should be (Vector(Vector(2)))
+    }
+
+    "support manual cache updates at field resolver" in {
+      check(schema(), (), """
+          {
+            categoryAndCacheEmptyProducts(id: "4") {
+              name
+              productRelSeq {
+                name
+              }
+            }
+          }
+        """, Map(
+        "data" → Map(
+          "categoryAndCacheEmptyProducts" → Map(
+            "name" → "Cat 4",
+            "productRelSeq" → Vector(),
+          ))),
+        resolver = defaultResolver,
+        userContext = new Repo)
     }
   }
 
