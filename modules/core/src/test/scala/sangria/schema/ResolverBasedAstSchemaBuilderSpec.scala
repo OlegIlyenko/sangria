@@ -34,6 +34,7 @@ class ResolverBasedAstSchemaBuilderSpec extends AnyWordSpec with Matchers with F
       "UUID",
       coerceOutput = (v, _) => v.toString,
       coerceUserInput = {
+        case uuid: UUID => Right(uuid)
         case s: String => parseUuid(s)
         case _ => Left(UUIDViolation)
       },

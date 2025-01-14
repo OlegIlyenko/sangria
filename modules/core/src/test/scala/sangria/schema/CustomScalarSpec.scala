@@ -32,6 +32,7 @@ class CustomScalarSpec extends AnyWordSpec with Matchers {
         coerceOutput = (d, _) => dateFormat.format(d),
         coerceUserInput = {
           case s: String => parseDate(s)
+          case d: Date => Right(d)
           case _ => Left(DateCoercionViolation)
         },
         coerceInput = {

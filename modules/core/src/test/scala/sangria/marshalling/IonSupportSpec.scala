@@ -40,6 +40,7 @@ class IonSupportSpec extends AnyWordSpec with Matchers with FutureResultSupport 
       else dateFormat.format(d),
     coerceUserInput = {
       case s: String => parseDate(s)
+      case d: Date => Right(d)
       case _ => Left(DateCoercionViolation)
     },
     coerceInput = {
@@ -51,13 +52,20 @@ class IonSupportSpec extends AnyWordSpec with Matchers with FutureResultSupport 
   val BlobType = ScalarType[Array[Byte]](
     "Blob",
     coerceOutput = (d, _) => d,
-    coerceUserInput = _ => Left(BinaryCoercionViolation),
-    coerceInput = _ => Left(BinaryCoercionViolation))
+    coerceUserInput = {
+      case bs: Array[Byte] => Right(bs)
+      case _ => Left(BinaryCoercionViolation)
+    },
+    coerceInput = _ => Left(BinaryCoercionViolation)
+  )
 
   val ClobType = ScalarType[Array[Byte]](
     "Clob",
     coerceOutput = (d, _) => d,
-    coerceUserInput = _ => Left(BinaryCoercionViolation),
+    coerceUserInput = {
+      case bs: Array[Byte] => Right(bs)
+      case _ => Left(BinaryCoercionViolation)
+    },
     coerceInput = _ => Left(BinaryCoercionViolation),
     scalarInfo = Set(IonClobScalar)
   )

@@ -1420,7 +1420,11 @@ private[execution] class FutureResolver[Ctx](
             if (isUndefinedValue(value))
               None
             else {
-              val coerced = scalar.coerceOutput(value, marshaller.capabilities)
+              val corcedInput = scalar
+                .coerceUserInput(value)
+                // Do we need a specific exepction here?
+                .fold(e => throw new ValidationError(Vector(e), exceptionHandler), identity)
+              val coerced = scalar.coerceOutput(corcedInput, marshaller.capabilities)
 
               if (isUndefinedValue(coerced)) {
                 None

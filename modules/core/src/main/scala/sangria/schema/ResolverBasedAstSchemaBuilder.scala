@@ -589,7 +589,7 @@ object ResolverBasedAstSchemaBuilder {
           case v: String => safe(v.toDouble, "Float", value)
           case _ => invalidType("Float", value)
         }
-      case _ => coerced
+      case _ => t.coerceUserInput(coerced).fold(e => invalidType(t.name, value), identity)
     }
   }
 
