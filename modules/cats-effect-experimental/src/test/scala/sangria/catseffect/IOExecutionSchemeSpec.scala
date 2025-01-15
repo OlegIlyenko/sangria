@@ -1,6 +1,7 @@
 package sangria.catseffect
 
 import cats.effect.IO
+import cats.effect.Async
 import cats.effect.unsafe.implicits.global
 import io.circe.Json
 import org.scalatest.matchers.must.Matchers
@@ -57,13 +58,27 @@ class IOExecutionSchemeSpec extends AnyWordSpec with Matchers {
 
 object IOExecutionSchemeSpec {
   import sangria.catseffect.schema.AsyncValue._
+
   private val QueryType: ObjectType[Unit, Unit] = ObjectType(
     "Query",
     () =>
       fields[Unit, Unit](
         Field("ids", ListType(IntType), resolve = _ => List(1, 2)),
-        Field("parent", StringType, resolve = _ => IO("hello"))
-      ))
+        Field(
+          "parent",
+          StringType,
+          resolve = { _ => resolve[IO]() }
+        )
+      )
+  )
+
+  private def resolve[F[_]: Async](): F[String] = {
+    import cats.syntax.functor._
+    Async[F].pure(Option("hello")).map {
+      case Some(value) => value
+      case None => throw new Exception("No value")
+    }
+  }
 
   private val schema = Schema(QueryType)
 }

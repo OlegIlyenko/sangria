@@ -12,7 +12,9 @@ case class AsyncValue[Ctx, Val, F[_]: Async](value: F[Val]) extends LeafAction[C
     new AsyncValue(Async[F].map(value)(fn))
 }
 
-object AsyncValue {
+object AsyncValue extends AsyncValueLowPriorityImplicits
+
+trait AsyncValueLowPriorityImplicits {
   implicit def asyncAction[Ctx, Val, F[_]: Async](value: F[Val]): LeafAction[Ctx, Val] =
     AsyncValue(value)
 }
