@@ -166,21 +166,23 @@ class IntrospectionSchemaMaterializerSpec
       ))
 
     "uses built-in scalars when possible" in {
-      val clientSchema = testSchema(
-        Schema(ObjectType(
-          "Scalars",
-          fields[Any, Any](
-            Field("int", IntType, resolve = _ => 1),
-            Field("long", LongType, resolve = _ => 1L),
-            Field("float", FloatType, resolve = _ => 1.1),
-            Field("bool", BooleanType, resolve = _ => true),
-            Field("bigInt", BigIntType, resolve = _ => BigInt(1)),
-            Field("bigDec", BigDecimalType, resolve = _ => BigDecimal(1.0)),
-            Field("id", IDType, resolve = _ => "foo"),
-            Field("custom", CustomScalar, resolve = _ => 123),
-            Field("string", StringType, resolve = _ => "foo")
-          )
-        )))
+      val clientSchema =
+        testSchema(
+          Schema(
+            ObjectType(
+              "Scalars",
+              fields[Any, Any](
+                Field("int", IntType, resolve = _ => 1),
+                Field("long", LongType, resolve = _ => 1L),
+                Field("float", FloatType, resolve = _ => 1.1),
+                Field("bool", BooleanType, resolve = _ => true),
+                Field("bigInt", BigIntType, resolve = _ => BigInt(1)),
+                Field("bigDec", BigDecimalType, resolve = _ => BigDecimal(1.0)),
+                Field("id", IDType, resolve = _ => "foo"),
+                Field("custom", CustomScalar, resolve = _ => 123),
+                Field("string", StringType, resolve = _ => "foo")
+              )
+            )))
 
       def fieldType(fieldName: String) =
         clientSchema
@@ -234,45 +236,50 @@ class IntrospectionSchemaMaterializerSpec
           fields[Any, Any](Field("friendly", OptionType(FriendlyUnionType), resolve = _ => None)))))
 
     "builds a schema with complex field values" in testSchema(
-      Schema(ObjectType(
-        "ComplexFields",
-        fields[Any, Any](
-          Field("string", OptionType(StringType), resolve = _ => None),
-          Field("listOfString", OptionType(ListType(OptionType(StringType))), resolve = _ => None),
-          Field("nonNullString", StringType, resolve = _ => "foo"),
-          Field("nonNullListOfString", ListType(OptionType(StringType)), resolve = _ => Nil),
-          Field("nonNullListOfNonNullString", ListType(StringType), resolve = _ => Nil)
-        )
-      )))
+      Schema(
+        ObjectType(
+          "ComplexFields",
+          fields[Any, Any](
+            Field("string", OptionType(StringType), resolve = _ => None),
+            Field(
+              "listOfString",
+              OptionType(ListType(OptionType(StringType))),
+              resolve = _ => None),
+            Field("nonNullString", StringType, resolve = _ => "foo"),
+            Field("nonNullListOfString", ListType(OptionType(StringType)), resolve = _ => Nil),
+            Field("nonNullListOfNonNullString", ListType(StringType), resolve = _ => Nil)
+          )
+        )))
 
     "builds a schema with field arguments" in testSchema(
-      Schema(ObjectType(
-        "ArgFields",
-        fields[Any, Any](
-          Field(
-            "one",
-            OptionType(StringType),
-            Some("A field with a single arg"),
-            arguments = Argument[Option[Int @@ CoercedScalaResult]](
-              "intArg",
-              OptionInputType(IntType),
-              description = "This is an int arg") :: Nil,
-            resolve = _ => None
-          ),
-          Field(
-            "two",
-            OptionType(StringType),
-            Some("A field with a two args"),
-            arguments = Argument[Option[Seq[Option[Int @@ CoercedScalaResult]]]](
-              "listArg",
-              OptionInputType(ListInputType(OptionInputType(IntType))),
-              description = "This is an list of int arg") ::
-              Argument("requiredArg", BooleanType, description = "This is a required arg") ::
-              Nil,
-            resolve = _ => None
+      Schema(
+        ObjectType(
+          "ArgFields",
+          fields[Any, Any](
+            Field(
+              "one",
+              OptionType(StringType),
+              Some("A field with a single arg"),
+              arguments = Argument[Option[Int @@ CoercedScalaResult]](
+                "intArg",
+                OptionInputType(IntType),
+                description = "This is an int arg") :: Nil,
+              resolve = _ => None
+            ),
+            Field(
+              "two",
+              OptionType(StringType),
+              Some("A field with a two args"),
+              arguments = Argument[Option[Seq[Option[Int @@ CoercedScalaResult]]]](
+                "listArg",
+                OptionInputType(ListInputType(OptionInputType(IntType))),
+                description = "This is an list of int arg") ::
+                Argument("requiredArg", BooleanType, description = "This is a required arg") ::
+                Nil,
+              resolve = _ => None
+            )
           )
-        )
-      )))
+        )))
 
     "builds a schema with an enum" in {
       val foodType = EnumType(
@@ -351,8 +358,8 @@ class IntrospectionSchemaMaterializerSpec
           InputField("lat", OptionInputType(FloatType)),
           InputField("lon", OptionInputType(FloatType))))
 
-      testSchema(
-        Schema(ObjectType(
+      testSchema(Schema(
+        ObjectType(
           "ArgFields",
           fields[Any, Any](
             Field(

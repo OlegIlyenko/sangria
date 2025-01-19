@@ -161,17 +161,16 @@ object InstanceCheck {
   def field[Ctx, T: InputUnmarshaller](fieldName: String): InstanceCheck[Ctx] = {
     val iu = implicitly[InputUnmarshaller[T]]
 
-    InstanceCheck(c =>
-      (value, _) => {
-        val node = value.asInstanceOf[T]
+    InstanceCheck { c => (value, _) =>
+      val node = value.asInstanceOf[T]
 
-        if (!iu.isMapNode(node)) false
-        else
-          iu.getMapValue(node, fieldName) match {
-            case Some(v) => iu.isScalarNode(v) && iu.getScalaScalarValue(v) == c.definition.name
-            case None => false
-          }
-      })
+      if (!iu.isMapNode(node)) false
+      else
+        iu.getMapValue(node, fieldName) match {
+          case Some(v) => iu.isScalarNode(v) && iu.getScalaScalarValue(v) == c.definition.name
+          case None => false
+        }
+    }
   }
 }
 

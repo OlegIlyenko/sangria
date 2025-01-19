@@ -273,7 +273,8 @@ class ExceptionHandlingSpec
         HandledException.multiple(
           Vector(
             ("Error 1", Map("errorCode" -> m.scalarNode("OOPS", "String", Set.empty)), Nil),
-            ("Error 2", Map.empty[String, m.Node], doc.operations.head._2.location.toList)))
+            ("Error 2", Map.empty[String, m.Node], doc.operations.head._2.location.toList)
+          ))
       }
 
       Executor.execute(schema, doc, exceptionHandler = exceptionHandler).await should be(

@@ -559,12 +559,11 @@ class StarWarsQuerySpec extends AnyWordSpec with Matchers with FutureResultSuppo
 
       val errors = res("errors").asInstanceOf[Seq[Any]]
 
-      errors should (have(size(1)).and(
-        contain(
-          Map(
-            "message" -> "Catch me if you can",
-            "path" -> List("nullableA", "nullableA", "nonNullA", "nonNullA", "throws"),
-            "locations" -> List(Map("line" -> 7, "column" -> 19))))))
+      errors should (have(size(1)).and(contain(Map(
+        "message" -> "Catch me if you can",
+        "path" -> List("nullableA", "nullableA", "nonNullA", "nonNullA", "throws"),
+        "locations" -> List(Map("line" -> 7, "column" -> 19))
+      ))))
     }
   }
 }

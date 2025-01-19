@@ -89,7 +89,8 @@ trait ValidationSupport extends Matchers {
         OptionType(BooleanType),
         arguments =
           List(Argument("x", OptionInputType(IntType)), Argument("y", OptionInputType(IntType))),
-        resolve = _ => None)
+        resolve = _ => None
+      )
     )
   )
 

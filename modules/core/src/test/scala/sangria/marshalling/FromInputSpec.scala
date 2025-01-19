@@ -442,18 +442,18 @@ class FromInputSpec extends AnyWordSpec with Matchers {
               Some(Article("first", None, None, Vector(None))),
               None,
               Some(Article("second", None, None, Vector(None, None))))).toString,
-          "olo3" -> Some(
-            Vector(
-              Some(
-                Article(
-                  "foo",
-                  Some("bar"),
-                  Some(Vector("a", "b")),
-                  Vector(
-                    None,
-                    Some(Comment("anonymous", None)),
-                    Some(Comment("anonymous", Some("comment3")))))),
-              None)).toString,
+          "olo3" -> Some(Vector(
+            Some(
+              Article(
+                "foo",
+                Some("bar"),
+                Some(Vector("a", "b")),
+                Vector(
+                  None,
+                  Some(Comment("anonymous", None)),
+                  Some(Comment("anonymous", Some("comment3")))))),
+            None
+          )).toString,
           "olo4" -> Some(
             Vector(
               Some(Article("bar", None, None, Vector(None))),
@@ -573,7 +573,8 @@ class FromInputSpec extends AnyWordSpec with Matchers {
                 Some(Vector("c", "d")),
                 Vector(Some(Comment("c1", None)), None))),
             None,
-            Some(Article("def2", Some("some text"), None, Vector.empty))).toString,
+            Some(Article("def2", Some("some text"), None, Vector.empty))
+          ).toString,
           "olo2" -> Vector(
             Some(Article("first", None, None, Vector(None))),
             None,
@@ -588,7 +589,8 @@ class FromInputSpec extends AnyWordSpec with Matchers {
                   None,
                   Some(Comment("anonymous", None)),
                   Some(Comment("anonymous", Some("comment3")))))),
-            None).toString,
+            None
+          ).toString,
           "olo4" -> Vector(
             Some(Article("bar", None, None, Vector(None))),
             None,

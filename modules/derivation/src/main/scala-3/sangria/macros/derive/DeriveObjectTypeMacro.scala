@@ -624,8 +624,8 @@ class DeriveObjectTypeMacro(using globalQuotes: Quotes) extends DeriveMacroSuppo
 
       if (unknown.isEmpty) Right(MacroIncludeMethods(methods.map(_.valueOrAbort).toSet))
       else
-        Left(
-          PositionByExpr(expr) -> s"Unknown members: ${unknown.mkString(", ")}. Known members are: ${known.mkString(", ")}")
+        Left(PositionByExpr(
+          expr) -> s"Unknown members: ${unknown.mkString(", ")}. Known members are: ${known.mkString(", ")}")
 
     case expr @ '{ ExcludeFields.apply[t, s](${ Varargs(fields) }: _*) } =>
       Right(MacroExcludeFields(fields.map(_.valueOrAbort).toSet, PositionByExpr(expr)))

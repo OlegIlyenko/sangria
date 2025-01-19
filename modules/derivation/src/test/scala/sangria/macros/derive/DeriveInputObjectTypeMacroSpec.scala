@@ -159,7 +159,8 @@ class DeriveInputObjectTypeMacroSpec extends AnyWordSpec with Matchers with Futu
         DocumentInputField("id", "the object ID"),
         RenameInputField("id", "identifier"),
         RenameInputField("list", "colors"),
-        DocumentInputField("list", "my colors"))
+        DocumentInputField("list", "my colors")
+      )
 
       tpe.fields should have size 3
 

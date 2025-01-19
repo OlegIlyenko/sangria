@@ -575,15 +575,17 @@ class DeriveObjectTypeMacroSpec extends AnyWordSpec with Matchers with FutureRes
         """
 
       Executor.execute(schema, query, Ctx(987, new FooBar)).await should be(
-        JsObject("data" -> JsObject(
-          "foo" -> JsString("id = 123, songs = a,b, cc = Red, pet = Pet(xxx,Some(322)), ctx = 987"),
-          "foo1" -> JsString(
-            "id = 123, songs = a,b, cc = Red, pet = Pet(mypet,Some(156)), ctx = 987"),
-          "opt" -> JsString("str = None, color = None, pet = None"),
-          "opt1" -> JsString(
-            "str = Some(test), color = Some(Red), pet = Some(Pet(anotherPet,Some(321)))"),
-          "paramType" -> JsString("id = 345, defaultId = 47589")
-        )))
+        JsObject(
+          "data" -> JsObject(
+            "foo" -> JsString(
+              "id = 123, songs = a,b, cc = Red, pet = Pet(xxx,Some(322)), ctx = 987"),
+            "foo1" -> JsString(
+              "id = 123, songs = a,b, cc = Red, pet = Pet(mypet,Some(156)), ctx = 987"),
+            "opt" -> JsString("str = None, color = None, pet = None"),
+            "opt1" -> JsString(
+              "str = Some(test), color = Some(Red), pet = Some(Pet(anotherPet,Some(321)))"),
+            "paramType" -> JsString("id = 345, defaultId = 47589")
+          )))
 
       val intro = IntrospectionParser
         .parse(Executor.execute(schema, introspectionQuery, Ctx(987, new FooBar)).await)

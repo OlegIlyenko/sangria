@@ -32,7 +32,8 @@ class EnumTypeSpec extends AnyWordSpec with Matchers with GraphQlSupport {
         "colorInt",
         OptionType(IntType),
         arguments = Args.fromEnum :: Args.fromInt :: Nil,
-        resolve = ctx => ctx.args.arg(Args.fromInt).orElse(ctx.args.arg(Args.fromEnum)))
+        resolve = ctx => ctx.args.arg(Args.fromInt).orElse(ctx.args.arg(Args.fromEnum))
+      )
     )
   )
 
@@ -44,7 +45,8 @@ class EnumTypeSpec extends AnyWordSpec with Matchers with GraphQlSupport {
         OptionType(ColorType),
         arguments = Args.fromEnum :: Nil,
         resolve = _.args.arg[Option[Int]](Args.fromEnum))
-    ))
+    )
+  )
 
   val SubscriptionType = ObjectType(
     "Subscription",
@@ -103,7 +105,8 @@ class EnumTypeSpec extends AnyWordSpec with Matchers with GraphQlSupport {
       (),
       """mutation x($color: Color!) { favoriteEnum(fromEnum: $color) }""",
       Map("data" -> Map("favoriteEnum" -> "GREEN")),
-      JsObject("color" -> JsString("GREEN")))
+      JsObject("color" -> JsString("GREEN"))
+    )
 
     "accepts enum literals as input arguments to subscriptions" in check(
       (),

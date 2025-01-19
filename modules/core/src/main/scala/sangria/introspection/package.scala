@@ -465,7 +465,8 @@ package object introspection {
     name = "__schema",
     fieldType = __Schema,
     description = Some("Access the current type schema of this server."),
-    resolve = _.schema.asInstanceOf[Schema[Any, Any]])
+    resolve = _.schema.asInstanceOf[Schema[Any, Any]]
+  )
 
   val TypeMetaField: Field[Unit, Unit] = Field(
     name = "__type",

@@ -71,7 +71,8 @@ class UniqueArgumentNamesSpec extends AnyWordSpec with ValidationSupport {
       """,
       List(
         "There can be only one argument named 'arg1'." -> Some(Pos(3, 32))
-      ))
+      )
+    )
 
     "many duplicate field arguments" in expectFails(
       """

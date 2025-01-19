@@ -133,33 +133,35 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                 FieldDefinition(
                   "five",
                   NamedType("String", Some(AstLocation(586, 21, 52))),
-                  Vector(InputValueDefinition(
-                    "argument",
-                    ListType(
-                      NamedType("String", Some(AstLocation(553, 21, 19))),
-                      Some(AstLocation(552, 21, 18))),
-                    Some(ListValue(
-                      Vector(
-                        StringValue(
-                          "string",
-                          false,
-                          None,
-                          Vector.empty,
-                          Some(AstLocation(564, 21, 30))),
-                        StringValue(
-                          "string",
-                          false,
-                          None,
-                          Vector.empty,
-                          Some(AstLocation(574, 21, 40)))),
+                  Vector(
+                    InputValueDefinition(
+                      "argument",
+                      ListType(
+                        NamedType("String", Some(AstLocation(553, 21, 19))),
+                        Some(AstLocation(552, 21, 18))),
+                      Some(ListValue(
+                        Vector(
+                          StringValue(
+                            "string",
+                            false,
+                            None,
+                            Vector.empty,
+                            Some(AstLocation(564, 21, 30))),
+                          StringValue(
+                            "string",
+                            false,
+                            None,
+                            Vector.empty,
+                            Some(AstLocation(574, 21, 40)))
+                        ),
+                        Vector.empty,
+                        Some(AstLocation(563, 21, 29))
+                      )),
                       Vector.empty,
-                      Some(AstLocation(563, 21, 29))
+                      None,
+                      Vector.empty,
+                      Some(AstLocation(542, 21, 8))
                     )),
-                    Vector.empty,
-                    None,
-                    Vector.empty,
-                    Some(AstLocation(542, 21, 8))
-                  )),
                   Vector.empty,
                   None,
                   Vector.empty,
@@ -168,30 +170,31 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                 FieldDefinition(
                   "six",
                   NamedType("Type", Some(AstLocation(678, 26, 46))),
-                  Vector(InputValueDefinition(
-                    "argument",
-                    NamedType("InputType", Some(AstLocation(649, 26, 17))),
-                    Some(ObjectValue(
-                      Vector(
-                        ObjectField(
-                          "key",
-                          StringValue(
-                            "value",
-                            false,
-                            None,
+                  Vector(
+                    InputValueDefinition(
+                      "argument",
+                      NamedType("InputType", Some(AstLocation(649, 26, 17))),
+                      Some(ObjectValue(
+                        Vector(
+                          ObjectField(
+                            "key",
+                            StringValue(
+                              "value",
+                              false,
+                              None,
+                              Vector.empty,
+                              Some(AstLocation(667, 26, 35))),
                             Vector.empty,
-                            Some(AstLocation(667, 26, 35))),
-                          Vector.empty,
-                          Some(AstLocation(662, 26, 30))
-                        )),
+                            Some(AstLocation(662, 26, 30))
+                          )),
+                        Vector.empty,
+                        Some(AstLocation(661, 26, 29))
+                      )),
                       Vector.empty,
-                      Some(AstLocation(661, 26, 29))
+                      None,
+                      Vector.empty,
+                      Some(AstLocation(639, 26, 7))
                     )),
-                    Vector.empty,
-                    None,
-                    Vector.empty,
-                    Some(AstLocation(639, 26, 7))
-                  )),
                   Vector.empty,
                   Some(
                     StringValue(
@@ -368,7 +371,8 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
               Vector(
                 NamedType("Story", Some(AstLocation(1037, 45, 14))),
                 NamedType("Article", Some(AstLocation(1045, 45, 22))),
-                NamedType("Advert", Some(AstLocation(1055, 45, 32)))),
+                NamedType("Advert", Some(AstLocation(1055, 45, 32)))
+              ),
               Vector.empty,
               None,
               Vector.empty,
@@ -659,26 +663,27 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(ObjectTypeDefinition(
-            "Hello",
-            Vector.empty,
-            Vector(FieldDefinition(
-              "world",
-              NamedType("String", Some(AstLocation(123, 6, 20))),
+          Vector(
+            ObjectTypeDefinition(
+              "Hello",
               Vector.empty,
+              Vector(FieldDefinition(
+                "world",
+                NamedType("String", Some(AstLocation(123, 6, 20))),
+                Vector.empty,
+                Vector.empty,
+                None,
+                Vector(Comment(" and field comment as well", Some(AstLocation(76, 5, 13)))),
+                Some(AstLocation(116, 6, 13))
+              )),
               Vector.empty,
               None,
-              Vector(Comment(" and field comment as well", Some(AstLocation(76, 5, 13)))),
-              Some(AstLocation(116, 6, 13))
+              Vector(
+                Comment(" my type", Some(AstLocation(11, 2, 11))),
+                Comment(" comment", Some(AstLocation(31, 3, 11)))),
+              Vector.empty,
+              Some(AstLocation(51, 4, 11))
             )),
-            Vector.empty,
-            None,
-            Vector(
-              Comment(" my type", Some(AstLocation(11, 2, 11))),
-              Comment(" comment", Some(AstLocation(31, 3, 11)))),
-            Vector.empty,
-            Some(AstLocation(51, 4, 11))
-          )),
           Vector.empty,
           Some(AstLocation(11, 2, 11)),
           None
@@ -696,25 +701,26 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(ObjectTypeExtensionDefinition(
-            "Hello",
-            Vector.empty,
-            Vector(
-              FieldDefinition(
-                "world",
-                NamedType("String", Some(AstLocation(90, 5, 20))),
-                Vector.empty,
-                Vector.empty,
-                None,
-                Vector.empty,
-                Some(AstLocation(83, 5, 13)))),
-            Vector.empty,
-            Vector(
-              Comment(" my type", Some(AstLocation(11, 2, 11))),
-              Comment(" comment", Some(AstLocation(31, 3, 11)))),
-            Vector.empty,
-            Some(AstLocation(51, 4, 11))
-          )),
+          Vector(
+            ObjectTypeExtensionDefinition(
+              "Hello",
+              Vector.empty,
+              Vector(
+                FieldDefinition(
+                  "world",
+                  NamedType("String", Some(AstLocation(90, 5, 20))),
+                  Vector.empty,
+                  Vector.empty,
+                  None,
+                  Vector.empty,
+                  Some(AstLocation(83, 5, 13)))),
+              Vector.empty,
+              Vector(
+                Comment(" my type", Some(AstLocation(11, 2, 11))),
+                Comment(" comment", Some(AstLocation(31, 3, 11)))),
+              Vector.empty,
+              Some(AstLocation(51, 4, 11))
+            )),
           Vector.empty,
           Some(AstLocation(11, 2, 11)),
           None
@@ -790,26 +796,27 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(ObjectTypeDefinition(
-            "Hello",
-            Vector(
-              NamedType("Wo", Some(AstLocation(22, 1, 23))),
-              NamedType("rld", Some(AstLocation(27, 1, 28)))),
-            Vector(
-              FieldDefinition(
-                "foo",
-                NamedType("Bar", Some(AstLocation(38, 1, 39))),
-                Vector.empty,
-                Vector.empty,
-                None,
-                Vector.empty,
-                Some(AstLocation(33, 1, 34)))),
-            Vector.empty,
-            None,
-            Vector.empty,
-            Vector.empty,
-            Some(AstLocation(0, 1, 1))
-          )),
+          Vector(
+            ObjectTypeDefinition(
+              "Hello",
+              Vector(
+                NamedType("Wo", Some(AstLocation(22, 1, 23))),
+                NamedType("rld", Some(AstLocation(27, 1, 28)))),
+              Vector(
+                FieldDefinition(
+                  "foo",
+                  NamedType("Bar", Some(AstLocation(38, 1, 39))),
+                  Vector.empty,
+                  Vector.empty,
+                  None,
+                  Vector.empty,
+                  Some(AstLocation(33, 1, 34)))),
+              Vector.empty,
+              None,
+              Vector.empty,
+              Vector.empty,
+              Some(AstLocation(0, 1, 1))
+            )),
           Vector.empty,
           Some(AstLocation(0, 1, 1)),
           None
@@ -828,26 +835,27 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(ObjectTypeDefinition(
-            "Hello",
-            Vector(
-              NamedType("Foo", Some(AstLocation(47, 3, 15))),
-              NamedType("Baz", Some(AstLocation(65, 4, 15)))),
-            Vector(
-              FieldDefinition(
-                "foo",
-                NamedType("Bar", Some(AstLocation(98, 6, 18))),
-                Vector.empty,
-                Vector.empty,
-                None,
-                Vector.empty,
-                Some(AstLocation(93, 6, 13)))),
-            Vector.empty,
-            None,
-            Vector.empty,
-            Vector.empty,
-            Some(AstLocation(11, 2, 11))
-          )),
+          Vector(
+            ObjectTypeDefinition(
+              "Hello",
+              Vector(
+                NamedType("Foo", Some(AstLocation(47, 3, 15))),
+                NamedType("Baz", Some(AstLocation(65, 4, 15)))),
+              Vector(
+                FieldDefinition(
+                  "foo",
+                  NamedType("Bar", Some(AstLocation(98, 6, 18))),
+                  Vector.empty,
+                  Vector.empty,
+                  None,
+                  Vector.empty,
+                  Some(AstLocation(93, 6, 13)))),
+              Vector.empty,
+              None,
+              Vector.empty,
+              Vector.empty,
+              Some(AstLocation(11, 2, 11))
+            )),
           Vector.empty,
           Some(AstLocation(11, 2, 11)),
           None
@@ -935,34 +943,36 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(ObjectTypeDefinition(
-            "Hello",
-            Vector.empty,
-            Vector(FieldDefinition(
-              "world",
-              NamedType("String", Some(AstLocation(140, 9, 31))),
-              Vector(InputValueDefinition(
-                "flag",
-                NamedType("Boolean", Some(AstLocation(130, 9, 21))),
-                None,
-                Vector.empty,
-                None,
-                Vector(
-                  Comment("c3", Some(AstLocation(87, 6, 15))),
-                  Comment("c4", Some(AstLocation(106, 8, 15)))),
-                Some(AstLocation(124, 9, 15))
-              )),
+          Vector(
+            ObjectTypeDefinition(
+              "Hello",
+              Vector.empty,
+              Vector(
+                FieldDefinition(
+                  "world",
+                  NamedType("String", Some(AstLocation(140, 9, 31))),
+                  Vector(InputValueDefinition(
+                    "flag",
+                    NamedType("Boolean", Some(AstLocation(130, 9, 21))),
+                    None,
+                    Vector.empty,
+                    None,
+                    Vector(
+                      Comment("c3", Some(AstLocation(87, 6, 15))),
+                      Comment("c4", Some(AstLocation(106, 8, 15)))),
+                    Some(AstLocation(124, 9, 15))
+                  )),
+                  Vector.empty,
+                  None,
+                  Vector(Comment("c2", Some(AstLocation(50, 4, 13)))),
+                  Some(AstLocation(66, 5, 13))
+                )),
               Vector.empty,
               None,
-              Vector(Comment("c2", Some(AstLocation(50, 4, 13)))),
-              Some(AstLocation(66, 5, 13))
+              Vector(Comment("c1", Some(AstLocation(11, 2, 11)))),
+              Vector.empty,
+              Some(AstLocation(25, 3, 11))
             )),
-            Vector.empty,
-            None,
-            Vector(Comment("c1", Some(AstLocation(11, 2, 11)))),
-            Vector.empty,
-            Some(AstLocation(25, 3, 11))
-          )),
           Vector.empty,
           Some(AstLocation(11, 2, 11)),
           None
@@ -980,35 +990,37 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(ObjectTypeDefinition(
-            "Hello",
-            Vector.empty,
-            Vector(FieldDefinition(
-              "world",
-              NamedType("String", Some(AstLocation(109, 5, 22))),
-              Vector(InputValueDefinition(
-                "flag",
-                NamedType("Boolean", Some(AstLocation(48, 3, 25))),
-                Some(BooleanValue(
-                  true,
-                  Vector(Comment(" value comment", Some(AstLocation(72, 4, 15)))),
-                  Some(AstLocation(102, 5, 15)))),
-                Vector.empty,
-                None,
-                Vector.empty,
-                Some(AstLocation(42, 3, 19))
-              )),
+          Vector(
+            ObjectTypeDefinition(
+              "Hello",
+              Vector.empty,
+              Vector(
+                FieldDefinition(
+                  "world",
+                  NamedType("String", Some(AstLocation(109, 5, 22))),
+                  Vector(InputValueDefinition(
+                    "flag",
+                    NamedType("Boolean", Some(AstLocation(48, 3, 25))),
+                    Some(BooleanValue(
+                      true,
+                      Vector(Comment(" value comment", Some(AstLocation(72, 4, 15)))),
+                      Some(AstLocation(102, 5, 15)))),
+                    Vector.empty,
+                    None,
+                    Vector.empty,
+                    Some(AstLocation(42, 3, 19))
+                  )),
+                  Vector.empty,
+                  None,
+                  Vector.empty,
+                  Some(AstLocation(36, 3, 13))
+                )),
               Vector.empty,
               None,
               Vector.empty,
-              Some(AstLocation(36, 3, 13))
+              Vector.empty,
+              Some(AstLocation(11, 2, 11))
             )),
-            Vector.empty,
-            None,
-            Vector.empty,
-            Vector.empty,
-            Some(AstLocation(11, 2, 11))
-          )),
           Vector.empty,
           Some(AstLocation(11, 2, 11)),
           None
@@ -1024,34 +1036,35 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(ObjectTypeDefinition(
-            "Hello",
-            Vector.empty,
-            Vector(FieldDefinition(
-              "world",
-              NamedType("String", Some(AstLocation(61, 3, 38))),
-              Vector(InputValueDefinition(
-                "things",
-                ListType(
-                  NamedType("String", Some(AstLocation(51, 3, 28))),
-                  Some(AstLocation(50, 3, 27))),
-                None,
+          Vector(
+            ObjectTypeDefinition(
+              "Hello",
+              Vector.empty,
+              Vector(FieldDefinition(
+                "world",
+                NamedType("String", Some(AstLocation(61, 3, 38))),
+                Vector(InputValueDefinition(
+                  "things",
+                  ListType(
+                    NamedType("String", Some(AstLocation(51, 3, 28))),
+                    Some(AstLocation(50, 3, 27))),
+                  None,
+                  Vector.empty,
+                  None,
+                  Vector.empty,
+                  Some(AstLocation(42, 3, 19))
+                )),
                 Vector.empty,
                 None,
                 Vector.empty,
-                Some(AstLocation(42, 3, 19))
+                Some(AstLocation(36, 3, 13))
               )),
               Vector.empty,
               None,
               Vector.empty,
-              Some(AstLocation(36, 3, 13))
+              Vector.empty,
+              Some(AstLocation(11, 2, 11))
             )),
-            Vector.empty,
-            None,
-            Vector.empty,
-            Vector.empty,
-            Some(AstLocation(11, 2, 11))
-          )),
           Vector.empty,
           Some(AstLocation(11, 2, 11)),
           None
@@ -1067,41 +1080,43 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(ObjectTypeDefinition(
-            "Hello",
-            Vector.empty,
-            Vector(FieldDefinition(
-              "world",
-              NamedType("String", Some(AstLocation(73, 3, 50))),
+          Vector(
+            ObjectTypeDefinition(
+              "Hello",
+              Vector.empty,
               Vector(
-                InputValueDefinition(
-                  "argOne",
-                  NamedType("Boolean", Some(AstLocation(50, 3, 27))),
-                  None,
+                FieldDefinition(
+                  "world",
+                  NamedType("String", Some(AstLocation(73, 3, 50))),
+                  Vector(
+                    InputValueDefinition(
+                      "argOne",
+                      NamedType("Boolean", Some(AstLocation(50, 3, 27))),
+                      None,
+                      Vector.empty,
+                      None,
+                      Vector.empty,
+                      Some(AstLocation(42, 3, 19))),
+                    InputValueDefinition(
+                      "argTwo",
+                      NamedType("Int", Some(AstLocation(67, 3, 44))),
+                      None,
+                      Vector.empty,
+                      None,
+                      Vector.empty,
+                      Some(AstLocation(59, 3, 36)))
+                  ),
                   Vector.empty,
                   None,
                   Vector.empty,
-                  Some(AstLocation(42, 3, 19))),
-                InputValueDefinition(
-                  "argTwo",
-                  NamedType("Int", Some(AstLocation(67, 3, 44))),
-                  None,
-                  Vector.empty,
-                  None,
-                  Vector.empty,
-                  Some(AstLocation(59, 3, 36)))
-              ),
+                  Some(AstLocation(36, 3, 13))
+                )),
               Vector.empty,
               None,
               Vector.empty,
-              Some(AstLocation(36, 3, 13))
+              Vector.empty,
+              Some(AstLocation(11, 2, 11))
             )),
-            Vector.empty,
-            None,
-            Vector.empty,
-            Vector.empty,
-            Some(AstLocation(11, 2, 11))
-          )),
           Vector.empty,
           Some(AstLocation(11, 2, 11)),
           None
@@ -1526,31 +1541,32 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast should be(
         Document(
-          Vector(SchemaDefinition(
-            Vector(
-              OperationTypeDefinition(
-                OperationType.Query,
-                NamedType("Query", Some(AstLocation(78, 4, 20))),
-                Vector.empty,
-                Some(AstLocation(71, 4, 13)))),
-            Vector(
-              Directive(
-                "dir1",
-                Vector.empty,
-                Vector.empty,
-                Some(AstLocation(51, 3, 18))
-              )),
-            Some(
-              StringValue(
-                "the best schema ever",
-                false,
-                None,
-                Vector.empty,
-                Some(AstLocation(11, 2, 11)))),
-            Vector.empty,
-            Vector.empty,
-            Some(AstLocation(44, 3, 11))
-          )),
+          Vector(
+            SchemaDefinition(
+              Vector(
+                OperationTypeDefinition(
+                  OperationType.Query,
+                  NamedType("Query", Some(AstLocation(78, 4, 20))),
+                  Vector.empty,
+                  Some(AstLocation(71, 4, 13)))),
+              Vector(
+                Directive(
+                  "dir1",
+                  Vector.empty,
+                  Vector.empty,
+                  Some(AstLocation(51, 3, 18))
+                )),
+              Some(
+                StringValue(
+                  "the best schema ever",
+                  false,
+                  None,
+                  Vector.empty,
+                  Some(AstLocation(11, 2, 11)))),
+              Vector.empty,
+              Vector.empty,
+              Some(AstLocation(44, 3, 11))
+            )),
           Vector.empty,
           Some(AstLocation(11, 2, 11)),
           None
@@ -1654,29 +1670,31 @@ class SchemaParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(ObjectTypeDefinition(
-            "Hello",
-            Vector.empty,
-            Vector(FieldDefinition(
-              "field1",
-              NamedType("Bar", Some(AstLocation(54, 5, 11))),
+          Vector(
+            ObjectTypeDefinition(
+              "Hello",
               Vector.empty,
-              Vector.empty,
-              Some(StringValue(
-                "some description",
-                true,
-                Some("\n  some description\n  "),
+              Vector(FieldDefinition(
+                "field1",
+                NamedType("Bar", Some(AstLocation(54, 5, 11))),
                 Vector.empty,
-                Some(AstLocation(15, 2, 3)))),
+                Vector.empty,
+                Some(
+                  StringValue(
+                    "some description",
+                    true,
+                    Some("\n  some description\n  "),
+                    Vector.empty,
+                    Some(AstLocation(15, 2, 3)))),
+                Vector.empty,
+                Some(AstLocation(46, 5, 3))
+              )),
               Vector.empty,
-              Some(AstLocation(46, 5, 3))
+              None,
+              Vector.empty,
+              Vector.empty,
+              Some(AstLocation(0, 1, 1))
             )),
-            Vector.empty,
-            None,
-            Vector.empty,
-            Vector.empty,
-            Some(AstLocation(0, 1, 1))
-          )),
           Vector.empty,
           Some(AstLocation(0, 1, 1)),
           None

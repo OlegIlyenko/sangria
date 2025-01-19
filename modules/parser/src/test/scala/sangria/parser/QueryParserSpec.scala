@@ -282,76 +282,84 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                           Vector.empty,
                           Some(AstLocation(411, 11, 17))
                         )),
-                      Vector(Field(
-                        None,
-                        "field2",
-                        Vector.empty,
-                        Vector.empty,
-                        Vector(
-                          Field(
-                            None,
-                            "id",
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Some(AstLocation(443, 13, 9))
-                          ),
-                          Field(
-                            Some("alias"),
-                            "field1",
-                            Vector(
-                              Argument(
-                                "first",
-                                BigIntValue(10, Vector.empty, Some(AstLocation(476, 14, 29))),
-                                Vector.empty,
-                                Some(AstLocation(470, 14, 23))
-                              ),
-                              Argument(
-                                "after",
-                                VariableValue("foo", Vector.empty, Some(AstLocation(486, 14, 39))),
-                                Vector.empty,
-                                Some(AstLocation(480, 14, 33))
-                              )
-                            ),
-                            Vector(Directive(
-                              "include",
-                              Vector(Argument(
-                                "if",
-                                VariableValue("foo", Vector.empty, Some(AstLocation(506, 14, 59))),
-                                Vector.empty,
-                                Some(AstLocation(502, 14, 55))
-                              )),
+                      Vector(
+                        Field(
+                          None,
+                          "field2",
+                          Vector.empty,
+                          Vector.empty,
+                          Vector(
+                            Field(
+                              None,
+                              "id",
                               Vector.empty,
-                              Some(AstLocation(493, 14, 46))
-                            )),
-                            Vector(
-                              Field(
-                                None,
-                                "id",
-                                Vector.empty,
-                                Vector.empty,
-                                Vector.empty,
-                                Vector.empty,
-                                Vector.empty,
-                                Some(AstLocation(524, 15, 11))
-                              ),
-                              FragmentSpread(
-                                "frag",
-                                Vector.empty,
-                                Vector.empty,
-                                Some(AstLocation(538, 16, 11)))
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Some(AstLocation(443, 13, 9))
                             ),
-                            Vector.empty,
-                            Vector.empty,
-                            Some(AstLocation(456, 14, 9))
-                          )
-                        ),
-                        Vector.empty,
-                        Vector.empty,
-                        Some(AstLocation(426, 12, 7))
-                      )),
+                            Field(
+                              Some("alias"),
+                              "field1",
+                              Vector(
+                                Argument(
+                                  "first",
+                                  BigIntValue(10, Vector.empty, Some(AstLocation(476, 14, 29))),
+                                  Vector.empty,
+                                  Some(AstLocation(470, 14, 23))
+                                ),
+                                Argument(
+                                  "after",
+                                  VariableValue(
+                                    "foo",
+                                    Vector.empty,
+                                    Some(AstLocation(486, 14, 39))),
+                                  Vector.empty,
+                                  Some(AstLocation(480, 14, 33))
+                                )
+                              ),
+                              Vector(Directive(
+                                "include",
+                                Vector(
+                                  Argument(
+                                    "if",
+                                    VariableValue(
+                                      "foo",
+                                      Vector.empty,
+                                      Some(AstLocation(506, 14, 59))),
+                                    Vector.empty,
+                                    Some(AstLocation(502, 14, 55))
+                                  )),
+                                Vector.empty,
+                                Some(AstLocation(493, 14, 46))
+                              )),
+                              Vector(
+                                Field(
+                                  None,
+                                  "id",
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Some(AstLocation(524, 15, 11))
+                                ),
+                                FragmentSpread(
+                                  "frag",
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Some(AstLocation(538, 16, 11)))
+                              ),
+                              Vector.empty,
+                              Vector.empty,
+                              Some(AstLocation(456, 14, 9))
+                            )
+                          ),
+                          Vector.empty,
+                          Vector.empty,
+                          Some(AstLocation(426, 12, 7))
+                        )),
                       Vector.empty,
                       Vector.empty,
                       Some(AstLocation(399, 11, 5))
@@ -454,57 +462,58 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                       Some(AstLocation(751, 32, 22))
                     )),
                   Vector.empty,
-                  Vector(Field(
-                    None,
-                    "story",
-                    Vector.empty,
-                    Vector.empty,
-                    Vector(
-                      Field(
-                        None,
-                        "likers",
-                        Vector.empty,
-                        Vector.empty,
-                        Vector(
-                          Field(
-                            None,
-                            "count",
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Some(AstLocation(803, 35, 9))
-                          )),
-                        Vector.empty,
-                        Vector.empty,
-                        Some(AstLocation(786, 34, 7))
+                  Vector(
+                    Field(
+                      None,
+                      "story",
+                      Vector.empty,
+                      Vector.empty,
+                      Vector(
+                        Field(
+                          None,
+                          "likers",
+                          Vector.empty,
+                          Vector.empty,
+                          Vector(
+                            Field(
+                              None,
+                              "count",
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Some(AstLocation(803, 35, 9))
+                            )),
+                          Vector.empty,
+                          Vector.empty,
+                          Some(AstLocation(786, 34, 7))
+                        ),
+                        Field(
+                          None,
+                          "likeSentence",
+                          Vector.empty,
+                          Vector.empty,
+                          Vector(
+                            Field(
+                              None,
+                              "text",
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Some(AstLocation(846, 38, 9))
+                            )),
+                          Vector.empty,
+                          Vector.empty,
+                          Some(AstLocation(823, 37, 7))
+                        )
                       ),
-                      Field(
-                        None,
-                        "likeSentence",
-                        Vector.empty,
-                        Vector.empty,
-                        Vector(
-                          Field(
-                            None,
-                            "text",
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Some(AstLocation(846, 38, 9))
-                          )),
-                        Vector.empty,
-                        Vector.empty,
-                        Some(AstLocation(823, 37, 7))
-                      )
-                    ),
-                    Vector.empty,
-                    Vector.empty,
-                    Some(AstLocation(772, 33, 5))
-                  )),
+                      Vector.empty,
+                      Vector.empty,
+                      Some(AstLocation(772, 33, 5))
+                    )),
                   Vector.empty,
                   Vector.empty,
                   Some(AstLocation(732, 32, 3))
@@ -736,71 +745,73 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                           Vector.empty,
                           None
                         )),
-                      Vector(Field(
-                        None,
-                        "field2",
-                        Vector.empty,
-                        Vector.empty,
-                        Vector(
-                          Field(
-                            None,
-                            "id",
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            None
-                          ),
-                          Field(
-                            Some("alias"),
-                            "field1",
-                            Vector(
-                              Argument(
-                                "first",
-                                BigIntValue(10, Vector.empty, None),
-                                Vector.empty,
-                                None
-                              ),
-                              Argument(
-                                "after",
-                                VariableValue("foo", Vector.empty, None),
-                                Vector.empty,
-                                None
-                              )),
-                            Vector(
-                              Directive(
-                                "include",
-                                Vector(Argument(
-                                  "if",
+                      Vector(
+                        Field(
+                          None,
+                          "field2",
+                          Vector.empty,
+                          Vector.empty,
+                          Vector(
+                            Field(
+                              None,
+                              "id",
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              None
+                            ),
+                            Field(
+                              Some("alias"),
+                              "field1",
+                              Vector(
+                                Argument(
+                                  "first",
+                                  BigIntValue(10, Vector.empty, None),
+                                  Vector.empty,
+                                  None
+                                ),
+                                Argument(
+                                  "after",
                                   VariableValue("foo", Vector.empty, None),
                                   Vector.empty,
                                   None
                                 )),
-                                Vector.empty,
-                                None
-                              )),
-                            Vector(
-                              Field(
-                                None,
-                                "id",
-                                Vector.empty,
-                                Vector.empty,
-                                Vector.empty,
-                                Vector.empty,
-                                Vector.empty,
-                                None
-                              ),
-                              FragmentSpread("frag", Vector.empty, Vector.empty, None)),
-                            Vector.empty,
-                            Vector.empty,
-                            None
-                          )
-                        ),
-                        Vector.empty,
-                        Vector.empty,
-                        None
-                      )),
+                              Vector(
+                                Directive(
+                                  "include",
+                                  Vector(
+                                    Argument(
+                                      "if",
+                                      VariableValue("foo", Vector.empty, None),
+                                      Vector.empty,
+                                      None
+                                    )),
+                                  Vector.empty,
+                                  None
+                                )),
+                              Vector(
+                                Field(
+                                  None,
+                                  "id",
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Vector.empty,
+                                  None
+                                ),
+                                FragmentSpread("frag", Vector.empty, Vector.empty, None)),
+                              Vector.empty,
+                              Vector.empty,
+                              None
+                            )
+                          ),
+                          Vector.empty,
+                          Vector.empty,
+                          None
+                        )),
                       Vector.empty,
                       Vector.empty,
                       None
@@ -890,57 +901,58 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                       None
                     )),
                   Vector.empty,
-                  Vector(Field(
-                    None,
-                    "story",
-                    Vector.empty,
-                    Vector.empty,
-                    Vector(
-                      Field(
-                        None,
-                        "likers",
-                        Vector.empty,
-                        Vector.empty,
-                        Vector(
-                          Field(
-                            None,
-                            "count",
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            None
-                          )),
-                        Vector.empty,
-                        Vector.empty,
-                        None
+                  Vector(
+                    Field(
+                      None,
+                      "story",
+                      Vector.empty,
+                      Vector.empty,
+                      Vector(
+                        Field(
+                          None,
+                          "likers",
+                          Vector.empty,
+                          Vector.empty,
+                          Vector(
+                            Field(
+                              None,
+                              "count",
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              None
+                            )),
+                          Vector.empty,
+                          Vector.empty,
+                          None
+                        ),
+                        Field(
+                          None,
+                          "likeSentence",
+                          Vector.empty,
+                          Vector.empty,
+                          Vector(
+                            Field(
+                              None,
+                              "text",
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              Vector.empty,
+                              None
+                            )),
+                          Vector.empty,
+                          Vector.empty,
+                          None
+                        )
                       ),
-                      Field(
-                        None,
-                        "likeSentence",
-                        Vector.empty,
-                        Vector.empty,
-                        Vector(
-                          Field(
-                            None,
-                            "text",
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            Vector.empty,
-                            None
-                          )),
-                        Vector.empty,
-                        Vector.empty,
-                        None
-                      )
-                    ),
-                    Vector.empty,
-                    Vector.empty,
-                    None
-                  )),
+                      Vector.empty,
+                      Vector.empty,
+                      None
+                    )),
                   Vector.empty,
                   Vector.empty,
                   None
@@ -1019,7 +1031,8 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                       BooleanValue(false, Vector.empty, None),
                       Vector.empty,
                       None
-                    )),
+                    )
+                  ),
                   Vector.empty,
                   Vector.empty,
                   Vector.empty,
@@ -1488,29 +1501,30 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       ast.withoutSourceMapper should be(
         Document(
-          Vector(DirectiveDefinition(
-            "include2",
-            Vector(InputValueDefinition(
-              "if",
-              NotNullType(
-                NamedType("Boolean", Some(AstLocation(33, 2, 33))),
-                Some(AstLocation(33, 2, 33))),
+          Vector(
+            DirectiveDefinition(
+              "include2",
+              Vector(InputValueDefinition(
+                "if",
+                NotNullType(
+                  NamedType("Boolean", Some(AstLocation(33, 2, 33))),
+                  Some(AstLocation(33, 2, 33))),
+                None,
+                Vector.empty,
+                None,
+                Vector.empty,
+                Some(AstLocation(29, 2, 29))
+              )),
+              Vector(
+                DirectiveLocation("FIELD", Vector.empty, Some(AstLocation(58, 3, 13))),
+                DirectiveLocation("FRAGMENT_SPREAD", Vector.empty, Some(AstLocation(76, 4, 13))),
+                DirectiveLocation("INLINE_FRAGMENT", Vector.empty, Some(AstLocation(104, 5, 13)))
+              ),
               None,
+              false,
               Vector.empty,
-              None,
-              Vector.empty,
-              Some(AstLocation(29, 2, 29))
+              Some(AstLocation(9, 2, 9))
             )),
-            Vector(
-              DirectiveLocation("FIELD", Vector.empty, Some(AstLocation(58, 3, 13))),
-              DirectiveLocation("FRAGMENT_SPREAD", Vector.empty, Some(AstLocation(76, 4, 13))),
-              DirectiveLocation("INLINE_FRAGMENT", Vector.empty, Some(AstLocation(104, 5, 13)))
-            ),
-            None,
-            false,
-            Vector.empty,
-            Some(AstLocation(9, 2, 9))
-          )),
           Vector.empty,
           Some(AstLocation(9, 2, 9)),
           None
@@ -1521,9 +1535,9 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
       ast match {
         case node if implicitly[ClassTag[T]].runtimeClass.isAssignableFrom(node.getClass) =>
           Some(node.asInstanceOf[T])
-        case Document(defs, _, _, _) => defs.map(findAst[T]).find(_.isDefined) flatten
+        case Document(defs, _, _, _) => defs.map(findAst[T]).find(_.isDefined).flatten
         case OperationDefinition(_, _, vars, _, _, _, _, _) =>
-          vars.map(findAst[T]).find(_.isDefined) flatten
+          vars.map(findAst[T]).find(_.isDefined).flatten
         case VariableDefinition(_, _, default, _, _, _) => default.flatMap(findAst[T])
         case _ => None
       }
@@ -1722,83 +1736,87 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                 VariableDefinition(
                   "foo",
                   NamedType("ComplexType", Some(AstLocation(703, 48, 7))),
-                  Some(ObjectValue(
-                    Vector(
-                      ObjectField(
-                        "field1",
-                        StringValue(
-                          "val",
-                          false,
-                          None,
-                          Vector(
-                            Comment(" comment 18.11", Some(AstLocation(849, 61, 1))),
-                            Comment(" comment 18.12", Some(AstLocation(865, 62, 1)))),
-                          Some(AstLocation(881, 63, 1))
-                        ),
-                        Vector(
-                          Comment(" comment 18.7", Some(AstLocation(779, 55, 1))),
-                          Comment(" comment 18.8", Some(AstLocation(794, 56, 1)))),
-                        Some(AstLocation(809, 57, 1))
-                      ),
-                      ObjectField(
-                        "list",
-                        ListValue(
-                          Vector(
-                            BigIntValue(
-                              1,
-                              Vector(
-                                Comment(" comment 18.21", Some(AstLocation(1026, 76, 1))),
-                                Comment(" comment 18.22", Some(AstLocation(1042, 77, 1)))),
-                              Some(AstLocation(1058, 78, 1))),
-                            BigIntValue(
-                              2,
-                              Vector(
-                                Comment(" comment 18.23", Some(AstLocation(1061, 79, 1))),
-                                Comment(" comment 18.24", Some(AstLocation(1077, 80, 1)))),
-                              Some(AstLocation(1093, 81, 1))),
-                            BigIntValue(
-                              3,
-                              Vector(
-                                Comment(" comment 18.25", Some(AstLocation(1096, 82, 1))),
-                                Comment(" comment 18.26", Some(AstLocation(1112, 83, 1)))),
-                              Some(AstLocation(1128, 84, 1)))
+                  Some(
+                    ObjectValue(
+                      Vector(
+                        ObjectField(
+                          "field1",
+                          StringValue(
+                            "val",
+                            false,
+                            None,
+                            Vector(
+                              Comment(" comment 18.11", Some(AstLocation(849, 61, 1))),
+                              Comment(" comment 18.12", Some(AstLocation(865, 62, 1)))),
+                            Some(AstLocation(881, 63, 1))
                           ),
                           Vector(
-                            Comment(" comment 18.19", Some(AstLocation(992, 73, 1))),
-                            Comment(" comment 18.20", Some(AstLocation(1008, 74, 1)))),
-                          Some(AstLocation(1024, 75, 1))
+                            Comment(" comment 18.7", Some(AstLocation(779, 55, 1))),
+                            Comment(" comment 18.8", Some(AstLocation(794, 56, 1)))),
+                          Some(AstLocation(809, 57, 1))
                         ),
-                        Vector(
-                          Comment(" comment 18.13", Some(AstLocation(887, 64, 1))),
-                          Comment(" comment 18.14", Some(AstLocation(903, 65, 1))),
-                          Comment(" comment 18.15", Some(AstLocation(921, 67, 1))),
-                          Comment(" comment 18.16", Some(AstLocation(937, 68, 1)))
-                        ),
-                        Some(AstLocation(953, 69, 1))
-                      ),
-                      ObjectField(
-                        "field2",
-                        BooleanValue(
-                          true,
+                        ObjectField(
+                          "list",
+                          ListValue(
+                            Vector(
+                              BigIntValue(
+                                1,
+                                Vector(
+                                  Comment(" comment 18.21", Some(AstLocation(1026, 76, 1))),
+                                  Comment(" comment 18.22", Some(AstLocation(1042, 77, 1)))),
+                                Some(AstLocation(1058, 78, 1))
+                              ),
+                              BigIntValue(
+                                2,
+                                Vector(
+                                  Comment(" comment 18.23", Some(AstLocation(1061, 79, 1))),
+                                  Comment(" comment 18.24", Some(AstLocation(1077, 80, 1)))),
+                                Some(AstLocation(1093, 81, 1))
+                              ),
+                              BigIntValue(
+                                3,
+                                Vector(
+                                  Comment(" comment 18.25", Some(AstLocation(1096, 82, 1))),
+                                  Comment(" comment 18.26", Some(AstLocation(1112, 83, 1)))),
+                                Some(AstLocation(1128, 84, 1))
+                              )
+                            ),
+                            Vector(
+                              Comment(" comment 18.19", Some(AstLocation(992, 73, 1))),
+                              Comment(" comment 18.20", Some(AstLocation(1008, 74, 1)))),
+                            Some(AstLocation(1024, 75, 1))
+                          ),
                           Vector(
-                            Comment(" comment 18.35", Some(AstLocation(1271, 97, 1))),
-                            Comment(" comment 18.36", Some(AstLocation(1287, 98, 1)))),
-                          Some(AstLocation(1303, 99, 1))
+                            Comment(" comment 18.13", Some(AstLocation(887, 64, 1))),
+                            Comment(" comment 18.14", Some(AstLocation(903, 65, 1))),
+                            Comment(" comment 18.15", Some(AstLocation(921, 67, 1))),
+                            Comment(" comment 18.16", Some(AstLocation(937, 68, 1)))
+                          ),
+                          Some(AstLocation(953, 69, 1))
                         ),
-                        Vector(
-                          Comment(" comment 18.29", Some(AstLocation(1164, 88, 1))),
-                          Comment(" comment 18.30", Some(AstLocation(1180, 89, 1))),
-                          Comment(" comment 18.31", Some(AstLocation(1198, 91, 1))),
-                          Comment(" comment 18.32", Some(AstLocation(1214, 92, 1)))
-                        ),
-                        Some(AstLocation(1230, 93, 1))
-                      )
-                    ),
-                    Vector(
-                      Comment(" comment 18.5", Some(AstLocation(747, 52, 1))),
-                      Comment(" comment 18.6", Some(AstLocation(762, 53, 1)))),
-                    Some(AstLocation(777, 54, 1))
-                  )),
+                        ObjectField(
+                          "field2",
+                          BooleanValue(
+                            true,
+                            Vector(
+                              Comment(" comment 18.35", Some(AstLocation(1271, 97, 1))),
+                              Comment(" comment 18.36", Some(AstLocation(1287, 98, 1)))),
+                            Some(AstLocation(1303, 99, 1))
+                          ),
+                          Vector(
+                            Comment(" comment 18.29", Some(AstLocation(1164, 88, 1))),
+                            Comment(" comment 18.30", Some(AstLocation(1180, 89, 1))),
+                            Comment(" comment 18.31", Some(AstLocation(1198, 91, 1))),
+                            Comment(" comment 18.32", Some(AstLocation(1214, 92, 1)))
+                          ),
+                          Some(AstLocation(1230, 93, 1))
+                        )
+                      ),
+                      Vector(
+                        Comment(" comment 18.5", Some(AstLocation(747, 52, 1))),
+                        Comment(" comment 18.6", Some(AstLocation(762, 53, 1)))),
+                      Some(AstLocation(777, 54, 1))
+                    )),
                   Vector.empty,
                   Vector(
                     Comment(" comment 17", Some(AstLocation(639, 43, 1))),
@@ -1814,33 +1832,34 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                 Field(
                   Some("whoever123is"),
                   "node",
-                  Vector(Argument(
-                    "id",
-                    ListValue(
-                      Vector(
-                        BigIntValue(
-                          123,
-                          Vector(
-                            Comment(" comment 35", Some(AstLocation(1660, 130, 3))),
-                            Comment(" comment 36", Some(AstLocation(1675, 131, 3)))),
-                          Some(AstLocation(1690, 132, 3))),
-                        BigIntValue(
-                          456,
-                          Vector(
-                            Comment(" comment 37", Some(AstLocation(1696, 133, 3))),
-                            Comment(" comment 38", Some(AstLocation(1711, 134, 3)))),
-                          Some(AstLocation(1726, 135, 3)))
+                  Vector(
+                    Argument(
+                      "id",
+                      ListValue(
+                        Vector(
+                          BigIntValue(
+                            123,
+                            Vector(
+                              Comment(" comment 35", Some(AstLocation(1660, 130, 3))),
+                              Comment(" comment 36", Some(AstLocation(1675, 131, 3)))),
+                            Some(AstLocation(1690, 132, 3))),
+                          BigIntValue(
+                            456,
+                            Vector(
+                              Comment(" comment 37", Some(AstLocation(1696, 133, 3))),
+                              Comment(" comment 38", Some(AstLocation(1711, 134, 3)))),
+                            Some(AstLocation(1726, 135, 3)))
+                        ),
+                        Vector(
+                          Comment(" comment 33", Some(AstLocation(1626, 127, 3))),
+                          Comment(" comment 34", Some(AstLocation(1641, 128, 3)))),
+                        Some(AstLocation(1656, 129, 3))
                       ),
                       Vector(
-                        Comment(" comment 33", Some(AstLocation(1626, 127, 3))),
-                        Comment(" comment 34", Some(AstLocation(1641, 128, 3)))),
-                      Some(AstLocation(1656, 129, 3))
-                    ),
-                    Vector(
-                      Comment(" comment 29", Some(AstLocation(1557, 121, 3))),
-                      Comment(" comment 30", Some(AstLocation(1572, 122, 3)))),
-                    Some(AstLocation(1587, 123, 3))
-                  )),
+                        Comment(" comment 29", Some(AstLocation(1557, 121, 3))),
+                        Comment(" comment 30", Some(AstLocation(1572, 122, 3)))),
+                      Some(AstLocation(1587, 123, 3))
+                    )),
                   Vector.empty,
                   Vector(
                     Field(
@@ -1865,99 +1884,104 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                           Comment(" comment 53", Some(AstLocation(2022, 158, 5)))),
                         Some(AstLocation(2039, 159, 5))
                       )),
-                      Vector(Field(
-                        None,
-                        "field2",
-                        Vector.empty,
-                        Vector.empty,
-                        Vector(Field(
-                          Some("alias"),
-                          "field1",
-                          Vector(
-                            Argument(
-                              "first",
-                              BigIntValue(
-                                10,
-                                Vector(
-                                  Comment(" comment 70", Some(AstLocation(2474, 185, 9))),
-                                  Comment(" comment 71", Some(AstLocation(2495, 186, 9)))),
-                                Some(AstLocation(2516, 187, 9))),
-                              Vector(
-                                Comment(" comment 66", Some(AstLocation(2366, 179, 9))),
-                                Comment(" comment 67", Some(AstLocation(2387, 180, 9)))),
-                              Some(AstLocation(2408, 181, 9))
-                            ),
-                            Argument(
-                              "after",
-                              VariableValue(
-                                "foo",
-                                Vector(
-                                  Comment(" comment 76", Some(AstLocation(2636, 194, 9))),
-                                  Comment(" comment 77", Some(AstLocation(2657, 195, 9)))),
-                                Some(AstLocation(2678, 196, 9))),
-                              Vector(
-                                Comment(" comment 72", Some(AstLocation(2528, 188, 9))),
-                                Comment(" comment 73", Some(AstLocation(2549, 189, 9)))),
-                              Some(AstLocation(2570, 190, 9))
-                            )
-                          ),
-                          Vector(Directive(
-                            "include",
-                            Vector(Argument(
-                              "if",
-                              VariableValue(
-                                "foo",
-                                Vector(
-                                  Comment(" comment 88", Some(AstLocation(2961, 212, 10))),
-                                  Comment(" comment 89", Some(AstLocation(2983, 213, 10)))),
-                                Some(AstLocation(3005, 214, 10))
-                              ),
-                              Vector(
-                                Comment(" comment 84", Some(AstLocation(2855, 206, 9))),
-                                Comment(" comment 85", Some(AstLocation(2876, 207, 9)))),
-                              Some(AstLocation(2897, 208, 9))
-                            )),
-                            Vector(
-                              Comment(" comment 80", Some(AstLocation(2744, 200, 9))),
-                              Comment(" comment 81", Some(AstLocation(2765, 201, 9)))),
-                            Some(AstLocation(2786, 202, 9))
-                          )),
+                      Vector(
+                        Field(
+                          None,
+                          "field2",
+                          Vector.empty,
+                          Vector.empty,
                           Vector(
                             Field(
-                              None,
-                              "id",
-                              Vector.empty,
-                              Vector.empty,
-                              Vector.empty,
+                              Some("alias"),
+                              "field1",
                               Vector(
-                                Comment(" comment 94", Some(AstLocation(3130, 221, 11))),
-                                Comment(" comment 95", Some(AstLocation(3153, 222, 11)))),
-                              Vector.empty,
-                              Some(AstLocation(3176, 223, 11))
-                            ),
-                            FragmentSpread(
-                              "frag",
-                              Vector.empty,
+                                Argument(
+                                  "first",
+                                  BigIntValue(
+                                    10,
+                                    Vector(
+                                      Comment(" comment 70", Some(AstLocation(2474, 185, 9))),
+                                      Comment(" comment 71", Some(AstLocation(2495, 186, 9)))),
+                                    Some(AstLocation(2516, 187, 9))),
+                                  Vector(
+                                    Comment(" comment 66", Some(AstLocation(2366, 179, 9))),
+                                    Comment(" comment 67", Some(AstLocation(2387, 180, 9)))),
+                                  Some(AstLocation(2408, 181, 9))
+                                ),
+                                Argument(
+                                  "after",
+                                  VariableValue(
+                                    "foo",
+                                    Vector(
+                                      Comment(" comment 76", Some(AstLocation(2636, 194, 9))),
+                                      Comment(" comment 77", Some(AstLocation(2657, 195, 9)))),
+                                    Some(AstLocation(2678, 196, 9))
+                                  ),
+                                  Vector(
+                                    Comment(" comment 72", Some(AstLocation(2528, 188, 9))),
+                                    Comment(" comment 73", Some(AstLocation(2549, 189, 9)))),
+                                  Some(AstLocation(2570, 190, 9))
+                                )
+                              ),
                               Vector(
-                                Comment(" comment 96", Some(AstLocation(3190, 224, 11))),
-                                Comment(" comment 97", Some(AstLocation(3213, 225, 11)))),
-                              Some(AstLocation(3237, 227, 11))
-                            )
-                          ),
+                                Directive(
+                                  "include",
+                                  Vector(
+                                    Argument(
+                                      "if",
+                                      VariableValue(
+                                        "foo",
+                                        Vector(
+                                          Comment(" comment 88", Some(AstLocation(2961, 212, 10))),
+                                          Comment(" comment 89", Some(AstLocation(2983, 213, 10)))),
+                                        Some(AstLocation(3005, 214, 10))
+                                      ),
+                                      Vector(
+                                        Comment(" comment 84", Some(AstLocation(2855, 206, 9))),
+                                        Comment(" comment 85", Some(AstLocation(2876, 207, 9)))),
+                                      Some(AstLocation(2897, 208, 9))
+                                    )),
+                                  Vector(
+                                    Comment(" comment 80", Some(AstLocation(2744, 200, 9))),
+                                    Comment(" comment 81", Some(AstLocation(2765, 201, 9)))),
+                                  Some(AstLocation(2786, 202, 9))
+                                )),
+                              Vector(
+                                Field(
+                                  None,
+                                  "id",
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Vector.empty,
+                                  Vector(
+                                    Comment(" comment 94", Some(AstLocation(3130, 221, 11))),
+                                    Comment(" comment 95", Some(AstLocation(3153, 222, 11)))),
+                                  Vector.empty,
+                                  Some(AstLocation(3176, 223, 11))
+                                ),
+                                FragmentSpread(
+                                  "frag",
+                                  Vector.empty,
+                                  Vector(
+                                    Comment(" comment 96", Some(AstLocation(3190, 224, 11))),
+                                    Comment(" comment 97", Some(AstLocation(3213, 225, 11)))),
+                                  Some(AstLocation(3237, 227, 11))
+                                )
+                              ),
+                              Vector(
+                                Comment(" comment 58", Some(AstLocation(2151, 167, 7))),
+                                Comment(" comment 59", Some(AstLocation(2170, 168, 7)))),
+                              Vector(
+                                Comment(" comment 100", Some(AstLocation(3312, 231, 11))),
+                                Comment(" comment 101", Some(AstLocation(3336, 232, 11)))),
+                              Some(AstLocation(2191, 169, 9))
+                            )),
+                          Vector.empty,
                           Vector(
-                            Comment(" comment 58", Some(AstLocation(2151, 167, 7))),
-                            Comment(" comment 59", Some(AstLocation(2170, 168, 7)))),
-                          Vector(
-                            Comment(" comment 100", Some(AstLocation(3312, 231, 11))),
-                            Comment(" comment 101", Some(AstLocation(3336, 232, 11)))),
-                          Some(AstLocation(2191, 169, 9))
+                            Comment(" comment 102", Some(AstLocation(3368, 234, 9))),
+                            Comment(" comment 103", Some(AstLocation(3390, 235, 9)))),
+                          Some(AstLocation(2092, 163, 7))
                         )),
-                        Vector.empty,
-                        Vector(
-                          Comment(" comment 102", Some(AstLocation(3368, 234, 9))),
-                          Comment(" comment 103", Some(AstLocation(3390, 235, 9)))),
-                        Some(AstLocation(2092, 163, 7))
-                      )),
                       Vector(
                         Comment(" comment 46", Some(AstLocation(1879, 148, 5))),
                         Comment(" comment 47", Some(AstLocation(1896, 149, 5)))),
@@ -2003,19 +2027,21 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                 Field(
                   None,
                   "like",
-                  Vector(Argument(
-                    "story",
-                    BigIntValue(
-                      123,
+                  Vector(
+                    Argument(
+                      "story",
+                      BigIntValue(
+                        123,
+                        Vector(
+                          Comment(" comment 124", Some(AstLocation(3793, 268, 3))),
+                          Comment(" comment 125", Some(AstLocation(3809, 269, 3)))),
+                        Some(AstLocation(3825, 270, 3))
+                      ),
                       Vector(
-                        Comment(" comment 124", Some(AstLocation(3793, 268, 3))),
-                        Comment(" comment 125", Some(AstLocation(3809, 269, 3)))),
-                      Some(AstLocation(3825, 270, 3))),
-                    Vector(
-                      Comment(" comment 120", Some(AstLocation(3717, 262, 3))),
-                      Comment(" comment 121", Some(AstLocation(3733, 263, 3)))),
-                    Some(AstLocation(3749, 264, 3))
-                  )),
+                        Comment(" comment 120", Some(AstLocation(3717, 262, 3))),
+                        Comment(" comment 121", Some(AstLocation(3733, 263, 3)))),
+                      Some(AstLocation(3749, 264, 3))
+                    )),
                   Vector(Directive(
                     "defer",
                     Vector.empty,
@@ -2024,34 +2050,36 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                       Comment(" comment 129", Some(AstLocation(3883, 275, 3)))),
                     Some(AstLocation(3899, 276, 3))
                   )),
-                  Vector(Field(
-                    None,
-                    "story",
-                    Vector.empty,
-                    Vector.empty,
-                    Vector(Field(
+                  Vector(
+                    Field(
                       None,
-                      "id",
-                      Vector.empty,
+                      "story",
                       Vector.empty,
                       Vector.empty,
                       Vector(
-                        Comment(" comment 136", Some(AstLocation(4030, 286, 5))),
-                        Comment(" comment 137", Some(AstLocation(4048, 287, 5))),
-                        Comment(" comment 138", Some(AstLocation(4067, 289, 5))),
-                        Comment(" comment 139", Some(AstLocation(4085, 290, 5)))
-                      ),
-                      Vector.empty,
-                      Some(AstLocation(4105, 291, 7))
+                        Field(
+                          None,
+                          "id",
+                          Vector.empty,
+                          Vector.empty,
+                          Vector.empty,
+                          Vector(
+                            Comment(" comment 136", Some(AstLocation(4030, 286, 5))),
+                            Comment(" comment 137", Some(AstLocation(4048, 287, 5))),
+                            Comment(" comment 138", Some(AstLocation(4067, 289, 5))),
+                            Comment(" comment 139", Some(AstLocation(4085, 290, 5)))
+                          ),
+                          Vector.empty,
+                          Some(AstLocation(4105, 291, 7))
+                        )),
+                      Vector(
+                        Comment(" comment 132", Some(AstLocation(3944, 280, 3))),
+                        Comment(" comment 133", Some(AstLocation(3960, 281, 3)))),
+                      Vector(
+                        Comment(" comment 140", Some(AstLocation(4114, 292, 7))),
+                        Comment(" comment 141", Some(AstLocation(4134, 293, 7)))),
+                      Some(AstLocation(3978, 282, 5))
                     )),
-                    Vector(
-                      Comment(" comment 132", Some(AstLocation(3944, 280, 3))),
-                      Comment(" comment 133", Some(AstLocation(3960, 281, 3)))),
-                    Vector(
-                      Comment(" comment 140", Some(AstLocation(4114, 292, 7))),
-                      Comment(" comment 141", Some(AstLocation(4134, 293, 7)))),
-                    Some(AstLocation(3978, 282, 5))
-                  )),
                   Vector(
                     Comment(" comment 116", Some(AstLocation(3644, 256, 1))),
                     Comment(" comment 117", Some(AstLocation(3658, 257, 1)))),
@@ -2075,27 +2103,29 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
               Vector(
                 InlineFragment(
                   None,
-                  Vector(Directive(
-                    "skip",
-                    Vector(Argument(
-                      "unless",
-                      VariableValue(
-                        "foo",
-                        Vector(
-                          Comment(" comment 168", Some(AstLocation(4613, 334, 3))),
-                          Comment(" comment 169", Some(AstLocation(4629, 335, 3)))),
-                        Some(AstLocation(4645, 336, 3))
-                      ),
+                  Vector(
+                    Directive(
+                      "skip",
                       Vector(
-                        Comment(" comment 164", Some(AstLocation(4536, 328, 3))),
-                        Comment(" comment 165", Some(AstLocation(4552, 329, 3)))),
-                      Some(AstLocation(4568, 330, 3))
+                        Argument(
+                          "unless",
+                          VariableValue(
+                            "foo",
+                            Vector(
+                              Comment(" comment 168", Some(AstLocation(4613, 334, 3))),
+                              Comment(" comment 169", Some(AstLocation(4629, 335, 3)))),
+                            Some(AstLocation(4645, 336, 3))
+                          ),
+                          Vector(
+                            Comment(" comment 164", Some(AstLocation(4536, 328, 3))),
+                            Comment(" comment 165", Some(AstLocation(4552, 329, 3)))),
+                          Some(AstLocation(4568, 330, 3))
+                        )),
+                      Vector(
+                        Comment(" comment 160", Some(AstLocation(4460, 322, 3))),
+                        Comment(" comment 161", Some(AstLocation(4476, 323, 3)))),
+                      Some(AstLocation(4492, 324, 3))
                     )),
-                    Vector(
-                      Comment(" comment 160", Some(AstLocation(4460, 322, 3))),
-                      Comment(" comment 161", Some(AstLocation(4476, 323, 3)))),
-                    Some(AstLocation(4492, 324, 3))
-                  )),
                   Vector(Field(
                     None,
                     "id",
@@ -2221,23 +2251,24 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
                 None,
                 "baz",
                 Vector.empty,
-                Vector(Directive(
-                  "docs",
-                  Vector(Argument(
-                    "info",
-                    StringValue(
-                      "\"\"\"\n\"\"\" this \" is \"\"\na description! \"\"\"",
-                      true,
-                      Some("\"\"\"\n    \"\"\" this \" is \"\"\n    a description! \"\"\"\n    "),
+                Vector(
+                  Directive(
+                    "docs",
+                    Vector(Argument(
+                      "info",
+                      StringValue(
+                        "\"\"\"\n\"\"\" this \" is \"\"\na description! \"\"\"",
+                        true,
+                        Some("\"\"\"\n    \"\"\" this \" is \"\"\n    a description! \"\"\"\n    "),
+                        Vector.empty,
+                        Some(AstLocation(225, 14, 5))
+                      ),
                       Vector.empty,
-                      Some(AstLocation(225, 14, 5))
-                    ),
+                      Some(AstLocation(215, 13, 13))
+                    )),
                     Vector.empty,
-                    Some(AstLocation(215, 13, 13))
+                    Some(AstLocation(209, 13, 7))
                   )),
-                  Vector.empty,
-                  Some(AstLocation(209, 13, 7))
-                )),
                 Vector.empty,
                 Vector.empty,
                 Vector.empty,
@@ -2270,37 +2301,39 @@ class QueryParserSpec extends AnyWordSpec with Matchers with StringMatchers {
 
       query should be(
         Document(
-          Vector(FragmentDefinition(
-            "a",
-            NamedType("t", Some(AstLocation(35, 1, 36))),
-            Vector.empty,
-            Vector(Field(
-              None,
-              "f",
-              Vector(Argument(
-                "v",
-                VariableValue("v", Vector.empty, Some(AstLocation(44, 1, 45))),
+          Vector(
+            FragmentDefinition(
+              "a",
+              NamedType("t", Some(AstLocation(35, 1, 36))),
+              Vector.empty,
+              Vector(Field(
+                None,
+                "f",
+                Vector(
+                  Argument(
+                    "v",
+                    VariableValue("v", Vector.empty, Some(AstLocation(44, 1, 45))),
+                    Vector.empty,
+                    Some(AstLocation(41, 1, 42))
+                  )),
                 Vector.empty,
-                Some(AstLocation(41, 1, 42))
+                Vector.empty,
+                Vector.empty,
+                Vector.empty,
+                Some(AstLocation(39, 1, 40))
+              )),
+              Vector(VariableDefinition(
+                "v",
+                NamedType("Boolean", Some(AstLocation(15, 1, 16))),
+                Some(BooleanValue(false, Vector.empty, Some(AstLocation(25, 1, 26)))),
+                Vector.empty,
+                Vector.empty,
+                Some(AstLocation(11, 1, 12))
               )),
               Vector.empty,
               Vector.empty,
-              Vector.empty,
-              Vector.empty,
-              Some(AstLocation(39, 1, 40))
+              Some(AstLocation(0, 1, 1))
             )),
-            Vector(VariableDefinition(
-              "v",
-              NamedType("Boolean", Some(AstLocation(15, 1, 16))),
-              Some(BooleanValue(false, Vector.empty, Some(AstLocation(25, 1, 26)))),
-              Vector.empty,
-              Vector.empty,
-              Some(AstLocation(11, 1, 12))
-            )),
-            Vector.empty,
-            Vector.empty,
-            Some(AstLocation(0, 1, 1))
-          )),
           Vector.empty,
           Some(AstLocation(0, 1, 1)),
           None

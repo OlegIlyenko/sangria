@@ -27,7 +27,7 @@ class ContextArgSpec extends AnyWordSpec with Matchers {
   private val schema = Schema(QueryType)
 
   "Context.arg" should {
-    "return Some(...) if the field have the argument and a non-null value" in {
+    "return Some(...) if the field have the argument and a non-null value" in
       check(
         schema,
         (),
@@ -37,8 +37,7 @@ class ContextArgSpec extends AnyWordSpec with Matchers {
           }
         """,
         Map("data" -> Map("foo" -> "Some(hello)")))
-    }
-    "return None if the field have the argument but no value" in {
+    "return None if the field have the argument but no value" in
       check(
         schema,
         (),
@@ -48,8 +47,7 @@ class ContextArgSpec extends AnyWordSpec with Matchers {
           }
         """,
         Map("data" -> Map("foo" -> "None")))
-    }
-    "return None if the field does not have the argument" in {
+    "return None if the field does not have the argument" in
       check(
         schema,
         (),
@@ -59,11 +57,10 @@ class ContextArgSpec extends AnyWordSpec with Matchers {
           }
         """,
         Map("data" -> Map("foo" -> "None")))
-    }
   }
 
   "Context.argOpt" should {
-    "return Some(Some(...)) if the field have the argument and a non-null value" in {
+    "return Some(Some(...)) if the field have the argument and a non-null value" in
       check(
         schema,
         (),
@@ -73,8 +70,7 @@ class ContextArgSpec extends AnyWordSpec with Matchers {
           }
         """,
         Map("data" -> Map("fooOpt" -> "Some(Some(hello))")))
-    }
-    "return Some(None) if the field have the argument but no value" in {
+    "return Some(None) if the field have the argument but no value" in
       check(
         schema,
         (),
@@ -84,8 +80,7 @@ class ContextArgSpec extends AnyWordSpec with Matchers {
           }
         """,
         Map("data" -> Map("fooOpt" -> "Some(None)")))
-    }
-    "return None if the field does not have the argument" in {
+    "return None if the field does not have the argument" in
       check(
         schema,
         (),
@@ -95,6 +90,5 @@ class ContextArgSpec extends AnyWordSpec with Matchers {
           }
         """,
         Map("data" -> Map("fooOpt" -> "None")))
-    }
   }
 }

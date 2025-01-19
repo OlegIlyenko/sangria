@@ -522,7 +522,9 @@ class ExecutorSpec extends AnyWordSpec with Matchers with FutureResultSupport {
               OptionInputType(IntType)) :: Argument[Option[String @@ CoercedScalaResult]](
               "stringArg",
               OptionInputType(StringType)) :: Nil,
-            resolve = ctx => { resolvedArgs = ctx.args.raw; None }
+            resolve = ctx => {
+              resolvedArgs = ctx.args.raw; None
+            }
           ))
         ))
 
@@ -548,29 +550,30 @@ class ExecutorSpec extends AnyWordSpec with Matchers with FutureResultSupport {
         }
       }
 
-      val schema = Schema(
-        ObjectType(
-          "Type",
-          fields[Unit, Data](
-            Field("sync", OptionType(StringType), resolve = _.value.sync),
-            Field("syncError", OptionType(StringType), resolve = _.value.syncError),
-            Field("async", OptionType(StringType), resolve = _.value.async),
-            Field("asyncReject", OptionType(StringType), resolve = ctx => ctx.value.asyncReject),
-            Field("asyncError", OptionType(StringType), resolve = _.value.asyncError),
-            Field(
-              "syncDeferError",
-              OptionType(StringType),
-              resolve = ctx =>
-                DeferredValue(throw new IllegalStateException("Error getting syncDeferError"))),
-            Field(
-              "asyncDeferError",
-              OptionType(StringType),
-              resolve = _ =>
-                DeferredFutureValue(
-                  Future.failed(throw new IllegalStateException("Error getting asyncDeferError")))
+      val schema =
+        Schema(
+          ObjectType(
+            "Type",
+            fields[Unit, Data](
+              Field("sync", OptionType(StringType), resolve = _.value.sync),
+              Field("syncError", OptionType(StringType), resolve = _.value.syncError),
+              Field("async", OptionType(StringType), resolve = _.value.async),
+              Field("asyncReject", OptionType(StringType), resolve = ctx => ctx.value.asyncReject),
+              Field("asyncError", OptionType(StringType), resolve = _.value.asyncError),
+              Field(
+                "syncDeferError",
+                OptionType(StringType),
+                resolve = ctx =>
+                  DeferredValue(throw new IllegalStateException("Error getting syncDeferError"))),
+              Field(
+                "asyncDeferError",
+                OptionType(StringType),
+                resolve = _ =>
+                  DeferredFutureValue(
+                    Future.failed(throw new IllegalStateException("Error getting asyncDeferError")))
+              )
             )
-          )
-        ))
+          ))
 
       val Success(doc) = QueryParser.parse("""
         {
@@ -1289,20 +1292,21 @@ class ExecutorSpec extends AnyWordSpec with Matchers with FutureResultSupport {
             OptionType(ListType(OptionType(IntType))),
             resolve = c =>
               Action
-                .sequence(Seq(
-                  LeafAction(Some(1)),
-                  LeafAction(None),
-                  LeafAction(Some(2)),
-                  LeafAction(Success(Some(3))),
-                  LeafAction(Future(Some(4))),
-                  LeafAction(PartialValue(Some(5), Vector(error))),
-                  PartialFutureValue[Unit, Option[Int]](
-                    Future(PartialValue(Some(6), Vector(error)))),
-                  LeafAction(fetcher.deferOpt(7)),
-                  LeafAction(fetcher.deferOpt(8)),
-                  LeafAction(Future(fetcher.deferOpt(9))),
-                  LeafAction(Future(fetcher.deferOpt(10)))
-                ).map(_.map(_.map(_ + 10))))
+                .sequence(
+                  Seq(
+                    LeafAction(Some(1)),
+                    LeafAction(None),
+                    LeafAction(Some(2)),
+                    LeafAction(Success(Some(3))),
+                    LeafAction(Future(Some(4))),
+                    LeafAction(PartialValue(Some(5), Vector(error))),
+                    PartialFutureValue[Unit, Option[Int]](
+                      Future(PartialValue(Some(6), Vector(error)))),
+                    LeafAction(fetcher.deferOpt(7)),
+                    LeafAction(fetcher.deferOpt(8)),
+                    LeafAction(Future(fetcher.deferOpt(9))),
+                    LeafAction(Future(fetcher.deferOpt(10)))
+                  ).map(_.map(_.map(_ + 10))))
                 .map(vs => vs.map(_.map(_ + 1)))
           )
         )

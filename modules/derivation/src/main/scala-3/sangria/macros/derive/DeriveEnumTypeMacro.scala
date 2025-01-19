@@ -19,8 +19,7 @@ object DeriveEnumTypeMacro extends DeriveMacroSupport {
         .filter(s =>
           val flags = s.flags
           s.isTerm && !(flags.is(Flags.Method) || flags.is(Flags.Module)) && (s.typeRef <:< TypeRepr
-            .of[Enumeration#Value])
-        )
+            .of[Enumeration#Value]))
         .toList
         .reverse
 
@@ -159,7 +158,8 @@ object DeriveEnumTypeMacro extends DeriveMacroSupport {
             $actualName,
             ${ flattenOptionExpr[String](configDescr.orElse(annotationDescr)) },
             $actualValue,
-            $configDocDepr.orElse($configDepr).orElse($annotationDepr))
+            $configDocDepr.orElse($configDepr).orElse($annotationDepr)
+          )
         }
       }
   }

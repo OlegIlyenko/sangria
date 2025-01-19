@@ -861,9 +861,8 @@ class SchemaRenderSpec
     }
   }
 
-  "Schema-based Schema Renderer" should {
+  "Schema-based Schema Renderer" should
     behave.like(`default schema renderer`(schema => renderForTest(schema)))
-  }
 
   "Introspection Schema Renderer" should {
     "Print Introspection Schema" in {

@@ -578,7 +578,7 @@ class MiddlewareSpec extends AnyWordSpec with Matchers with FutureResultSupport 
       """))
   }
 
-  "Mutation" should {
+  "Mutation" should
     behave.like(properFieldLevelMiddleware(graphql"""
         mutation Foo {
           someString
@@ -598,7 +598,6 @@ class MiddlewareSpec extends AnyWordSpec with Matchers with FutureResultSupport 
           errorInAfter
         }
       """))
-  }
 
   private[this] def properFieldLevelMiddleware(query: Document): Unit =
     "should support before and after at field level " in {

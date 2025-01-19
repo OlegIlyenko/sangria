@@ -9,8 +9,9 @@ import sangria.schema.InputType
 import scala.annotation.tailrec
 
 object DeriveInputObjectTypeMacro {
-  def deriveInputObjectType[T](using Quotes, Type[T])(
-      config: Expr[Seq[DeriveInputObjectSetting]]) = {
+  def deriveInputObjectType[T](using
+      Quotes,
+      Type[T])(config: Expr[Seq[DeriveInputObjectSetting]]) = {
     val Varargs(configSeq) = config
     new DeriveInputObjectTypeMacro().deriveInputObjectType(configSeq)
   }

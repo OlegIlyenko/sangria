@@ -476,8 +476,8 @@ class AstSchemaMaterializer[Ctx] private (
         origin = origin,
         definition = directive,
         arguments =
-          directive.arguments.flatMap(buildArgument(origin, Left(directive), None, _)) toList,
-        locations = directive.locations.map(buildDirectiveLocation) toSet,
+          directive.arguments.flatMap(buildArgument(origin, Left(directive), None, _)).toList,
+        locations = directive.locations.map(buildDirectiveLocation).toSet,
         mat = this
       ))
 
@@ -659,7 +659,7 @@ class AstSchemaMaterializer[Ctx] private (
       typeDefinition: Either[ast.TypeDefinition, ObjectLikeType[Ctx, _]],
       extensions: Vector[ast.ObjectLikeTypeExtensionDefinition],
       field: ast.FieldDefinition): Option[Field[Ctx, Any]] = {
-    val args = field.arguments.flatMap(buildArgument(origin, typeDefinition, Some(field), _)) toList
+    val args = field.arguments.flatMap(buildArgument(origin, typeDefinition, Some(field), _)).toList
     val fieldType = builder.buildFieldType(origin, typeDefinition, extensions, field, args, this)
 
     builder.buildField(origin, typeDefinition, extensions, field, fieldType, args, this)
@@ -772,7 +772,7 @@ class AstSchemaMaterializer[Ctx] private (
     val extraFields = extensions.flatMap(_.fields)
 
     val fieldsFn = () => {
-      val ef = extraFields.flatMap(buildInputField(origin, Right(tpe), _, extensions)) toList
+      val ef = extraFields.flatMap(buildInputField(origin, Right(tpe), _, extensions)).toList
       val f = tpe.fields.map(extendInputField(origin, tpe, _))
 
       f ++ ef
@@ -899,7 +899,7 @@ class AstSchemaMaterializer[Ctx] private (
       origin,
       extensions,
       tpe,
-      withExtensions.map(getObjectType(origin, _)) toList,
+      withExtensions.map(getObjectType(origin, _)).toList,
       this)
   }
 
@@ -908,7 +908,7 @@ class AstSchemaMaterializer[Ctx] private (
     val extraTypes = extensions.flatMap(_.types)
 
     val t = tpe.types.map(getTypeFromDef(origin, _))
-    val et = extraTypes.map(getObjectType(origin, _)) toList
+    val et = extraTypes.map(getObjectType(origin, _)).toList
 
     builder.extendUnionType(origin, extensions, tpe, t ++ et, this)
   }
@@ -935,7 +935,7 @@ class AstSchemaMaterializer[Ctx] private (
       origin,
       extensions,
       tpe,
-      () => withExtensions.flatMap(buildInputField(origin, Left(tpe), _, extensions)) toList,
+      () => withExtensions.flatMap(buildInputField(origin, Left(tpe), _, extensions)).toList,
       this)
   }
 
@@ -954,7 +954,7 @@ class AstSchemaMaterializer[Ctx] private (
       origin,
       extensions,
       tpe,
-      withExtensions.flatMap(buildEnumValue(origin, Left(tpe), _, extensions)) toList,
+      withExtensions.flatMap(buildEnumValue(origin, Left(tpe), _, extensions)).toList,
       this)
   }
 

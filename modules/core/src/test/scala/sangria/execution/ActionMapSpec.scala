@@ -131,18 +131,19 @@ class ActionMapSpec extends AnyWordSpec with Matchers with FutureResultSupport {
       """)
 
       Executor.execute(schema, doc, deferredResolver = new ColorResolver).await should be(
-        Map("data" -> Map(
-          "value" -> "light-red",
-          "doubleMap" -> "light-red-color",
-          "future" -> "light-green",
-          "futureDouble" -> Map("name" -> "light-green"),
-          "futureTriple" -> "super-light-green",
-          "deferred" -> "[168]345",
-          "futureDeferred" -> "[79]56",
-          "futureDeferredDouble" -> "Yay! [79]576 +++",
-          "futureDeferredTriple" -> "Yay! [79]576 +++",
-          "ctxUpdate" -> Map("name" -> "(![56]?576)")
-        )))
+        Map(
+          "data" -> Map(
+            "value" -> "light-red",
+            "doubleMap" -> "light-red-color",
+            "future" -> "light-green",
+            "futureDouble" -> Map("name" -> "light-green"),
+            "futureTriple" -> "super-light-green",
+            "deferred" -> "[168]345",
+            "futureDeferred" -> "[79]56",
+            "futureDeferredDouble" -> "Yay! [79]576 +++",
+            "futureDeferredTriple" -> "Yay! [79]576 +++",
+            "ctxUpdate" -> Map("name" -> "(![56]?576)")
+          )))
     }
 
     "produce partial errors" in {

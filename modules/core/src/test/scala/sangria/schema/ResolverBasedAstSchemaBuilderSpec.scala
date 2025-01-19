@@ -478,7 +478,8 @@ class ResolverBasedAstSchemaBuilderSpec extends AnyWordSpec with Matchers with F
                 if fieldName.startsWith("test") =>
               c => c.arg[Int](field.arguments.head.name) + 1
           },
-          PartialFunction.empty),
+          PartialFunction.empty
+        ),
         FieldResolver.map("Query" -> Map("a" -> (_ => "a value"), "b" -> (_ => "b value"))),
         ExistingFieldResolver {
           case (_, _, field) if field.name.startsWith("existing") =>

@@ -223,10 +223,9 @@ object ValueCollector {
 }
 
 case class VariableValue(
-    fn: (
-        ResultMarshaller,
-        ResultMarshaller,
-        InputType[_]) => Either[Vector[Violation], Trinary[ResultMarshaller#Node]]) {
+    fn: (ResultMarshaller, ResultMarshaller, InputType[_]) => Either[
+      Vector[Violation],
+      Trinary[ResultMarshaller#Node]]) {
   private val cache =
     Cache.empty[(Int, Int), Either[Vector[Violation], Trinary[ResultMarshaller#Node]]]
 

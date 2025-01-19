@@ -46,14 +46,13 @@ class TypeFieldConstraintsSpec extends AnyWordSpec with Matchers {
     }
 
     "disallow invalid names" in {
-      an[SchemaValidationException] should be thrownBy {
+      an[SchemaValidationException] should be thrownBy
         Schema(
           ObjectType(
             "Test-object",
             fields[Unit, Unit](
               Field("a", StringType, resolve = _ => "foo")
             )))
-      }
     }
   }
 

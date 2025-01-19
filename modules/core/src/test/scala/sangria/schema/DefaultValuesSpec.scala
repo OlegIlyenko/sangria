@@ -259,7 +259,8 @@ class DefaultValuesSpec extends AnyWordSpec with Matchers with FutureResultSuppo
         ListInputType(StringType),
         defaultValue = JsArray(JsString("foo"), JsString("bar")),
         expectedResult = List("foo", "bar"),
-        expectedDefault = "[\"foo\",\"bar\"]")
+        expectedDefault = "[\"foo\",\"bar\"]"
+      )
 
       val JsonInputType = complexInputType(
         sharesDefault = JsObject("twitter" -> JsNumber(78)),

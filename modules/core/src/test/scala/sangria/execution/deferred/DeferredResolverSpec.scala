@@ -301,12 +301,10 @@ class DeferredResolverSpec extends AnyWordSpec with Matchers with FutureResultSu
   }
 
   "DeferredResolver" when {
-    "using standard execution context" should {
+    "using standard execution context" should
       behave.like(deferredResolver(ExecutionContext.Implicits.global))
-    }
 
-    "using sync execution context" should {
+    "using sync execution context" should
       behave.like(deferredResolver(sync.executionContext))
-    }
   }
 }

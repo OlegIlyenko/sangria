@@ -19,16 +19,16 @@ case class Document(
     with WithTrailingComments {
 
   /** Map of operation name to its definition. */
-  lazy val operations: Map[Option[String], OperationDefinition] = Map(definitions.collect {
-    case op: OperationDefinition =>
+  lazy val operations: Map[Option[String], OperationDefinition] = Map(
+    definitions.collect { case op: OperationDefinition =>
       op.name -> op
-  }: _*)
+    }: _*)
 
   /** Map of fragment name to its definition. */
-  lazy val fragments: Map[String, FragmentDefinition] = Map(definitions.collect {
-    case fragment: FragmentDefinition =>
+  lazy val fragments: Map[String, FragmentDefinition] = Map(
+    definitions.collect { case fragment: FragmentDefinition =>
       fragment.name -> fragment
-  }: _*)
+    }: _*)
 
   lazy val source: Option[String] = sourceMapper.map(_.source)
 

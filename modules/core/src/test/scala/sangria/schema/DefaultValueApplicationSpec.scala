@@ -59,7 +59,7 @@ class DefaultValueApplicationSpec extends AnyWordSpec with Matchers with FutureR
       check(graphql"query ($$x: String) { test(a: $$x) }", """{"x": "bar"}""", assertion)
     }
 
-    "default variable value should not be used if variable is set to `null`" in {
+    "default variable value should not be used if variable is set to `null`" in
       check(
         graphql"""query ($$x: String = "bar") { test(a: $$x) }""",
         """{"x": null}""",
@@ -70,9 +70,8 @@ class DefaultValueApplicationSpec extends AnyWordSpec with Matchers with FutureR
           args.argDefinedInQuery(AArg) should be(true)
         }
       )
-    }
 
-    "default variable value should not be used if variable is not set" in {
+    "default variable value should not be used if variable is not set" in
       check(
         graphql"""query ($$x: String = "bar") { test(a: $$x) }""",
         """{}""",
@@ -83,7 +82,6 @@ class DefaultValueApplicationSpec extends AnyWordSpec with Matchers with FutureR
           args.argDefinedInQuery(AArg) should be(true)
         }
       )
-    }
 
     "use default value if field is not provided" in {
       val assertion = (args: Args) =>
@@ -131,7 +129,7 @@ class DefaultValueApplicationSpec extends AnyWordSpec with Matchers with FutureR
         assertion)
     }
 
-    "default variable value should not be used if variable is set to `null` for a field" in {
+    "default variable value should not be used if variable is set to `null` for a field" in
       check(
         graphql"""query ($$x: String = "bar") { testInp(inp: {f: $$x}, inpJson: {f: $$x}) }""",
         """{"x": null}""",
@@ -141,9 +139,8 @@ class DefaultValueApplicationSpec extends AnyWordSpec with Matchers with FutureR
             inpJson should be("""{"f": null}""".parseJson)
           }
       )
-    }
 
-    "default variable value should not be used if variable is not set for a field" in {
+    "default variable value should not be used if variable is not set for a field" in
       check(
         graphql"""query ($$x: String = "bar") { testInp(inp: {f: $$x}, inpJson: {f: $$x}) }""",
         """{}""",
@@ -153,9 +150,8 @@ class DefaultValueApplicationSpec extends AnyWordSpec with Matchers with FutureR
             inpJson should be("""{"f": "bar"}""".parseJson)
           }
       )
-    }
 
-    "set fields to `null` if value is not set, but default is set to null" in {
+    "set fields to `null` if value is not set, but default is set to null" in
       check(
         graphql"""query ($$x: String = "bar", $$y: String = null) { testInp(inp: {f: $$x, fo: $$y}, inpJson: {f: $$x, fo: $$y}) }""",
         """{}""",
@@ -165,7 +161,6 @@ class DefaultValueApplicationSpec extends AnyWordSpec with Matchers with FutureR
             inpJson should be("""{"f": "bar", "fo": null}""".parseJson)
           }
       )
-    }
   }
 
   class Ctx {

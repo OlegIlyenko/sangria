@@ -71,27 +71,28 @@ class ScalarAliasSpec extends AnyWordSpec with Matchers with FutureResultSupport
 
   "ScalarAlias" should {
     "represent value class as scalar type" in {
-      val schema = Schema(
-        ObjectType(
-          "Query",
-          fields[Unit, Unit](
-            Field(
-              "user",
-              UserType,
-              arguments = UserIdArg :: NumArg :: ComplexArg :: Nil,
-              resolve = _.withArgs(UserIdArg, NumArg, ComplexArg)((userId, num, complex) =>
-                User(userId, complex("userId").asInstanceOf[Option[UserId]], "generated", num))
-            ),
-            Field(
-              "idTest",
-              UUIDType,
-              arguments = UUIDArg :: Nil,
-              resolve = c => {
-                val uuid: UUID = c.arg(UUIDArg)
-                uuid
-              })
-          )
-        ))
+      val schema =
+        Schema(
+          ObjectType(
+            "Query",
+            fields[Unit, Unit](
+              Field(
+                "user",
+                UserType,
+                arguments = UserIdArg :: NumArg :: ComplexArg :: Nil,
+                resolve = _.withArgs(UserIdArg, NumArg, ComplexArg)((userId, num, complex) =>
+                  User(userId, complex("userId").asInstanceOf[Option[UserId]], "generated", num))
+              ),
+              Field(
+                "idTest",
+                UUIDType,
+                arguments = UUIDArg :: Nil,
+                resolve = c => {
+                  val uuid: UUID = c.arg(UUIDArg)
+                  uuid
+                })
+            )
+          ))
 
       val query =
         graphql"""
@@ -121,30 +122,31 @@ class ScalarAliasSpec extends AnyWordSpec with Matchers with FutureResultSupport
         """
 
       Executor.execute(schema, query).await should be(
-        Map("data" -> Map(
-          "user" -> Map("id" -> "1234", "id2" -> "5678", "name" -> "generated", "num" -> 42),
-          "__type" -> Map(
-            "name" -> "User",
-            "fields" -> Vector(
-              Map(
-                "name" -> "id",
-                "type" -> Map(
-                  "kind" -> "NON_NULL",
-                  "ofType" -> Map("kind" -> "SCALAR", "name" -> "String"))),
-              Map("name" -> "id2", "type" -> Map("kind" -> "SCALAR", "ofType" -> null)),
-              Map(
-                "name" -> "name",
-                "type" -> Map(
-                  "kind" -> "NON_NULL",
-                  "ofType" -> Map("kind" -> "SCALAR", "name" -> "String"))),
-              Map(
-                "name" -> "num",
-                "type" -> Map(
-                  "kind" -> "NON_NULL",
-                  "ofType" -> Map("kind" -> "SCALAR", "name" -> "Int")))
+        Map(
+          "data" -> Map(
+            "user" -> Map("id" -> "1234", "id2" -> "5678", "name" -> "generated", "num" -> 42),
+            "__type" -> Map(
+              "name" -> "User",
+              "fields" -> Vector(
+                Map(
+                  "name" -> "id",
+                  "type" -> Map(
+                    "kind" -> "NON_NULL",
+                    "ofType" -> Map("kind" -> "SCALAR", "name" -> "String"))),
+                Map("name" -> "id2", "type" -> Map("kind" -> "SCALAR", "ofType" -> null)),
+                Map(
+                  "name" -> "name",
+                  "type" -> Map(
+                    "kind" -> "NON_NULL",
+                    "ofType" -> Map("kind" -> "SCALAR", "name" -> "String"))),
+                Map(
+                  "name" -> "num",
+                  "type" -> Map(
+                    "kind" -> "NON_NULL",
+                    "ofType" -> Map("kind" -> "SCALAR", "name" -> "Int")))
+              )
             )
-          )
-        )))
+          )))
     }
 
     "represent correct transforms UUID values coming from variables (also after AST-based schema extension)" in {
@@ -153,42 +155,43 @@ class ScalarAliasSpec extends AnyWordSpec with Matchers with FutureResultSupport
 
       val InpArg = Argument("inp", TestInp)
 
-      val schema = Schema(
-        ObjectType(
-          "Query",
-          fields[Unit, Unit](
-            Field(
-              "idTest",
-              UUIDType,
-              arguments = UUIDArg :: Nil,
-              resolve = c => {
-                val uuid: UUID = c.arg(UUIDArg)
-                uuid
-              }),
-            Field(
-              "cidTest",
-              OptionType(ListType(ListType(OptionType(UUIDType)))),
-              arguments = ComplexUUIDArg :: Nil,
-              resolve = c => {
-                val cuuid: Option[Seq[Seq[Option[UUID]]]] = c.arg(ComplexUUIDArg)
-                cuuid
-              }
-            ),
-            Field(
-              "inpTest",
-              StringType,
-              arguments = InpArg :: Nil,
-              resolve = c => {
-                val inp = c.arg(InpArg)
+      val schema =
+        Schema(
+          ObjectType(
+            "Query",
+            fields[Unit, Unit](
+              Field(
+                "idTest",
+                UUIDType,
+                arguments = UUIDArg :: Nil,
+                resolve = c => {
+                  val uuid: UUID = c.arg(UUIDArg)
+                  uuid
+                }),
+              Field(
+                "cidTest",
+                OptionType(ListType(ListType(OptionType(UUIDType)))),
+                arguments = ComplexUUIDArg :: Nil,
+                resolve = c => {
+                  val cuuid: Option[Seq[Seq[Option[UUID]]]] = c.arg(ComplexUUIDArg)
+                  cuuid
+                }
+              ),
+              Field(
+                "inpTest",
+                StringType,
+                arguments = InpArg :: Nil,
+                resolve = c => {
+                  val inp = c.arg(InpArg)
 
-                val id: UUID = inp("id").asInstanceOf[UUID]
-                val id1: UUID = inp("id1").asInstanceOf[UUID]
+                  val id: UUID = inp("id").asInstanceOf[UUID]
+                  val id1: UUID = inp("id1").asInstanceOf[UUID]
 
-                s"${id.toString}/${id1.toString}"
-              }
+                  s"${id.toString}/${id1.toString}"
+                }
+              )
             )
-          )
-        ))
+          ))
 
       val query =
         gql"""
@@ -224,34 +227,35 @@ class ScalarAliasSpec extends AnyWordSpec with Matchers with FutureResultSupport
 
       Seq(schema, schema1).foreach { s =>
         Executor.execute(s, query, variables = scalaInput(vars)).await should be(
-          Map("data" -> Map(
-            "i1" -> "f28efae0-8808-4514-b356-02808d4e936c",
-            "i2" -> "9454db18-2ce5-11e7-93ae-92361f002671",
-            "inp1" -> "f28efae0-8808-4514-b356-02808d4e936c/9454db18-2ce5-11e7-93ae-92361f002671",
-            "inp2" -> "9454d352-2ce5-11e7-93ae-92361f002671/9454d5e6-2ce5-11e7-93ae-92361f002671",
-            "ci1" -> Vector(
-              Vector(
-                "ad6a2dd9-ccd0-44dc-86d2-80cf945cb16e",
-                "6297bd9e-2647-4770-a791-5c3f44bc56ee"),
-              Vector(null, "a9525f38-380b-4226-a362-471ece962f06")),
-            "ci2" -> Vector(
-              Vector(
-                "f28efae0-8808-4514-b356-02808d4e936c",
-                null,
-                "9454db18-2ce5-11e7-93ae-92361f002671"),
-              Vector("dd96051e-21c5-468b-ad93-43241acd9540")),
-            "ci3" -> Vector(
-              Vector(
-                "9153a6c1-fb4b-4d69-b9aa-ee95765cf093",
-                null,
-                "1a1e42c3-b79b-4dbb-ad89-4ee223ffb6be"),
-              Vector(null, "4e4548b0-87db-49b6-a764-2d84c2322fb7")),
-            "ci4" -> Vector(
-              Vector(
-                "ad6a2dd9-ccd0-44dc-86d2-80cf945cb16e",
-                "6297bd9e-2647-4770-a791-5c3f44bc56ee"),
-              Vector(null, "a9525f38-380b-4226-a362-471ece962f06"))
-          )))
+          Map(
+            "data" -> Map(
+              "i1" -> "f28efae0-8808-4514-b356-02808d4e936c",
+              "i2" -> "9454db18-2ce5-11e7-93ae-92361f002671",
+              "inp1" -> "f28efae0-8808-4514-b356-02808d4e936c/9454db18-2ce5-11e7-93ae-92361f002671",
+              "inp2" -> "9454d352-2ce5-11e7-93ae-92361f002671/9454d5e6-2ce5-11e7-93ae-92361f002671",
+              "ci1" -> Vector(
+                Vector(
+                  "ad6a2dd9-ccd0-44dc-86d2-80cf945cb16e",
+                  "6297bd9e-2647-4770-a791-5c3f44bc56ee"),
+                Vector(null, "a9525f38-380b-4226-a362-471ece962f06")),
+              "ci2" -> Vector(
+                Vector(
+                  "f28efae0-8808-4514-b356-02808d4e936c",
+                  null,
+                  "9454db18-2ce5-11e7-93ae-92361f002671"),
+                Vector("dd96051e-21c5-468b-ad93-43241acd9540")),
+              "ci3" -> Vector(
+                Vector(
+                  "9153a6c1-fb4b-4d69-b9aa-ee95765cf093",
+                  null,
+                  "1a1e42c3-b79b-4dbb-ad89-4ee223ffb6be"),
+                Vector(null, "4e4548b0-87db-49b6-a764-2d84c2322fb7")),
+              "ci4" -> Vector(
+                Vector(
+                  "ad6a2dd9-ccd0-44dc-86d2-80cf945cb16e",
+                  "6297bd9e-2647-4770-a791-5c3f44bc56ee"),
+                Vector(null, "a9525f38-380b-4226-a362-471ece962f06"))
+            )))
       }
     }
 

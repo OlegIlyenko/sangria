@@ -298,35 +298,37 @@ class FetcherSpec extends AnyWordSpec with Matchers with FutureResultSupport {
           Vector("6", "7")))
 
       List(res, resCached).foreach(
-        _ should be(Map("data" -> Map(
-          "c1" -> null,
-          "c3" -> Map(
-            "name" -> "Cat 8",
-            "childrenSeqOpt" -> Vector(Map("id" -> "4"), Map("id" -> "5"))),
-          "rootFut" -> Map(
-            "id" -> "1",
-            "name" -> "Root",
-            "childrenSeq" -> Vector(
-              Map(
-                "id" -> "2",
-                "name" -> "Cat 2",
+        _ should be(
+          Map(
+            "data" -> Map(
+              "c1" -> null,
+              "c3" -> Map(
+                "name" -> "Cat 8",
+                "childrenSeqOpt" -> Vector(Map("id" -> "4"), Map("id" -> "5"))),
+              "rootFut" -> Map(
+                "id" -> "1",
+                "name" -> "Root",
                 "childrenSeq" -> Vector(
-                  Map("id" -> "5", "name" -> "Cat 5", "childrenSeq" -> Vector.empty),
-                  Map("id" -> "6", "name" -> "Cat 6", "childrenSeq" -> Vector.empty))
-              ),
-              Map(
-                "id" -> "3",
-                "name" -> "Cat 3",
-                "childrenSeq" -> Vector(
-                  Map("id" -> "7", "name" -> "Cat 7", "childrenSeq" -> Vector.empty),
-                  Map("id" -> "5", "name" -> "Cat 5", "childrenSeq" -> Vector.empty),
-                  Map("id" -> "6", "name" -> "Cat 6", "childrenSeq" -> Vector.empty)
+                  Map(
+                    "id" -> "2",
+                    "name" -> "Cat 2",
+                    "childrenSeq" -> Vector(
+                      Map("id" -> "5", "name" -> "Cat 5", "childrenSeq" -> Vector.empty),
+                      Map("id" -> "6", "name" -> "Cat 6", "childrenSeq" -> Vector.empty))
+                  ),
+                  Map(
+                    "id" -> "3",
+                    "name" -> "Cat 3",
+                    "childrenSeq" -> Vector(
+                      Map("id" -> "7", "name" -> "Cat 7", "childrenSeq" -> Vector.empty),
+                      Map("id" -> "5", "name" -> "Cat 5", "childrenSeq" -> Vector.empty),
+                      Map("id" -> "6", "name" -> "Cat 6", "childrenSeq" -> Vector.empty)
+                    )
+                  ),
+                  Map("id" -> "4", "name" -> "Cat 4", "childrenSeq" -> Vector.empty)
                 )
-              ),
-              Map("id" -> "4", "name" -> "Cat 4", "childrenSeq" -> Vector.empty)
-            )
-          )
-        ))))
+              )
+            ))))
     }
 
     "fetch results with `deferOpt` and option argument" in {
@@ -727,104 +729,113 @@ class FetcherSpec extends AnyWordSpec with Matchers with FutureResultSupport {
           }
         """,
         Map(
-          "data" -> Map("root" -> Map(
-            "name" -> "Root",
-            "products" -> Vector.empty,
-            "childrenSeq" -> Vector(
-              Map(
-                "name" -> "Cat 2",
-                "products" -> Vector.empty,
-                "childrenSeq" -> Vector(
-                  Map(
-                    "name" -> "Cat 5",
-                    "products" -> Vector(
-                      Map(
-                        "name" -> "Magic belt",
-                        "categories" -> Vector(
-                          Map("name" -> "Cat 4"),
-                          Map("name" -> "Cat 5"),
-                          Map("name" -> "Cat 7"))),
-                      Map(
-                        "name" -> "Unidentified potion",
-                        "categories" -> Vector(Map("name" -> "Cat 5")))
-                    )
-                  ),
-                  Map(
-                    "name" -> "Cat 6",
-                    "products" -> Vector(
-                      Map("name" -> "Common boots", "categories" -> Vector(Map("name" -> "Cat 6"))),
-                      Map("name" -> "Golden ring", "categories" -> Vector(Map("name" -> "Cat 6"))),
-                      Map(
-                        "name" -> "Rusty sword",
-                        "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 6")))
-                    )
-                  )
-                )
-              ),
-              Map(
-                "name" -> "Cat 3",
-                "products" -> Vector.empty,
-                "childrenSeq" -> Vector(
-                  Map(
-                    "name" -> "Cat 7",
-                    "products" -> Vector(
-                      Map(
-                        "name" -> "Magic belt",
-                        "categories" -> Vector(
-                          Map("name" -> "Cat 4"),
-                          Map("name" -> "Cat 5"),
-                          Map("name" -> "Cat 7"))),
-                      Map(
-                        "name" -> "Health potion",
-                        "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 7")))
-                    )
-                  ),
-                  Map(
-                    "name" -> "Cat 5",
-                    "products" -> Vector(
-                      Map(
-                        "name" -> "Magic belt",
-                        "categories" -> Vector(
-                          Map("name" -> "Cat 4"),
-                          Map("name" -> "Cat 5"),
-                          Map("name" -> "Cat 7"))),
-                      Map(
-                        "name" -> "Unidentified potion",
-                        "categories" -> Vector(Map("name" -> "Cat 5")))
-                    )
-                  ),
-                  Map(
-                    "name" -> "Cat 6",
-                    "products" -> Vector(
-                      Map("name" -> "Common boots", "categories" -> Vector(Map("name" -> "Cat 6"))),
-                      Map("name" -> "Golden ring", "categories" -> Vector(Map("name" -> "Cat 6"))),
-                      Map(
-                        "name" -> "Rusty sword",
-                        "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 6")))
+          "data" -> Map(
+            "root" -> Map(
+              "name" -> "Root",
+              "products" -> Vector.empty,
+              "childrenSeq" -> Vector(
+                Map(
+                  "name" -> "Cat 2",
+                  "products" -> Vector.empty,
+                  "childrenSeq" -> Vector(
+                    Map(
+                      "name" -> "Cat 5",
+                      "products" -> Vector(
+                        Map(
+                          "name" -> "Magic belt",
+                          "categories" -> Vector(
+                            Map("name" -> "Cat 4"),
+                            Map("name" -> "Cat 5"),
+                            Map("name" -> "Cat 7"))),
+                        Map(
+                          "name" -> "Unidentified potion",
+                          "categories" -> Vector(Map("name" -> "Cat 5")))
+                      )
+                    ),
+                    Map(
+                      "name" -> "Cat 6",
+                      "products" -> Vector(
+                        Map(
+                          "name" -> "Common boots",
+                          "categories" -> Vector(Map("name" -> "Cat 6"))),
+                        Map(
+                          "name" -> "Golden ring",
+                          "categories" -> Vector(Map("name" -> "Cat 6"))),
+                        Map(
+                          "name" -> "Rusty sword",
+                          "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 6")))
+                      )
                     )
                   )
-                )
-              ),
-              Map(
-                "name" -> "Cat 4",
-                "products" -> Vector(
-                  Map(
-                    "name" -> "Rusty sword",
-                    "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 6"))),
-                  Map(
-                    "name" -> "Magic belt",
-                    "categories" -> Vector(
-                      Map("name" -> "Cat 4"),
-                      Map("name" -> "Cat 5"),
-                      Map("name" -> "Cat 7"))),
-                  Map(
-                    "name" -> "Health potion",
-                    "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 7")))
                 ),
-                "childrenSeq" -> Vector.empty
+                Map(
+                  "name" -> "Cat 3",
+                  "products" -> Vector.empty,
+                  "childrenSeq" -> Vector(
+                    Map(
+                      "name" -> "Cat 7",
+                      "products" -> Vector(
+                        Map(
+                          "name" -> "Magic belt",
+                          "categories" -> Vector(
+                            Map("name" -> "Cat 4"),
+                            Map("name" -> "Cat 5"),
+                            Map("name" -> "Cat 7"))),
+                        Map(
+                          "name" -> "Health potion",
+                          "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 7")))
+                      )
+                    ),
+                    Map(
+                      "name" -> "Cat 5",
+                      "products" -> Vector(
+                        Map(
+                          "name" -> "Magic belt",
+                          "categories" -> Vector(
+                            Map("name" -> "Cat 4"),
+                            Map("name" -> "Cat 5"),
+                            Map("name" -> "Cat 7"))),
+                        Map(
+                          "name" -> "Unidentified potion",
+                          "categories" -> Vector(Map("name" -> "Cat 5")))
+                      )
+                    ),
+                    Map(
+                      "name" -> "Cat 6",
+                      "products" -> Vector(
+                        Map(
+                          "name" -> "Common boots",
+                          "categories" -> Vector(Map("name" -> "Cat 6"))),
+                        Map(
+                          "name" -> "Golden ring",
+                          "categories" -> Vector(Map("name" -> "Cat 6"))),
+                        Map(
+                          "name" -> "Rusty sword",
+                          "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 6")))
+                      )
+                    )
+                  )
+                ),
+                Map(
+                  "name" -> "Cat 4",
+                  "products" -> Vector(
+                    Map(
+                      "name" -> "Rusty sword",
+                      "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 6"))),
+                    Map(
+                      "name" -> "Magic belt",
+                      "categories" -> Vector(
+                        Map("name" -> "Cat 4"),
+                        Map("name" -> "Cat 5"),
+                        Map("name" -> "Cat 7"))),
+                    Map(
+                      "name" -> "Health potion",
+                      "categories" -> Vector(Map("name" -> "Cat 4"), Map("name" -> "Cat 7")))
+                  ),
+                  "childrenSeq" -> Vector.empty
+                )
               )
-            )
-          ))),
+            ))),
         resolver = DeferredResolver.fetchers(fetcherCat, fetcherProd),
         userContext = new Repo
       )
@@ -1015,12 +1026,10 @@ class FetcherSpec extends AnyWordSpec with Matchers with FutureResultSupport {
   }
 
   "Fetcher" when {
-    "using standard execution context" should {
+    "using standard execution context" should
       behave.like(properFetcher(ExecutionContext.Implicits.global))
-    }
 
-    "using sync execution context" should {
+    "using sync execution context" should
       behave.like(properFetcher(sync.executionContext))
-    }
   }
 }

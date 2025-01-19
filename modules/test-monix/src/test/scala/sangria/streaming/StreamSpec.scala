@@ -16,7 +16,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 class StreamSpec extends AnyWordSpec with Matchers with FutureResultSupport {
-  val timeout = 10 seconds
+  val timeout = 10.seconds
 
   case class Fruit(id: Int, name: String, color: String)
 

@@ -5,7 +5,7 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class SourceMapperSpec extends AnyWordSpec with MustVerb {
   "A reference to the former SourceMapper name" must {
-    "compile" in {
+    "compile" in
       assertCompiles {
         """import org.parboiled2.ParserInput
           |import sangria.ast.{DefaultSourceMapper, SourceMapperInput}
@@ -18,6 +18,5 @@ class SourceMapperSpec extends AnyWordSpec with MustVerb {
           |  })
           |""".stripMargin
       }
-    }
   }
 }

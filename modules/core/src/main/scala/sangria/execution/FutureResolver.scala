@@ -143,7 +143,7 @@ private[execution] class FutureResolver[Ctx](
           .asInstanceOf[scheme.Result[Ctx, marshaller.Node]]
 
       case es: ExecutionScheme.StreamBasedExecutionScheme[
-            ({ type X[_] })#X @unchecked] @unchecked =>
+            ({ type X [_] })#X @unchecked] @unchecked =>
         val (_, res) = resolveSubs(
           ExecutionPath.empty,
           tpe,

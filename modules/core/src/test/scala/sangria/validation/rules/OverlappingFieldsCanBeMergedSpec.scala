@@ -460,7 +460,8 @@ class OverlappingFieldsCanBeMergedSpec extends AnyWordSpec with ValidationSuppor
           fields[Unit, Unit](
             Field("deepBox", OptionType(SomeBox), resolve = _ => None),
             Field("unrelatedField", OptionType(StringType), resolve = _ => None)
-          ))
+          )
+      )
 
       lazy val StringBox: ObjectType[Unit, Unit] = ObjectType(
         "StringBox",
