@@ -6,7 +6,7 @@ import com.typesafe.tools.mima.core._
 val isScala3 = Def.setting(scalaBinaryVersion.value == "3")
 
 // sbt-github-actions needs configuration in `ThisBuild`
-ThisBuild / crossScalaVersions := Seq("2.12.20", "2.13.15", "3.3.4")
+ThisBuild / crossScalaVersions := Seq("2.12.20", "2.13.16", "3.3.4")
 ThisBuild / scalaVersion := crossScalaVersions.value.tail.head
 ThisBuild / githubWorkflowBuildPreamble ++= List(
   WorkflowStep.Sbt(List("mimaReportBinaryIssues"), name = Some("Check binary compatibility")),
